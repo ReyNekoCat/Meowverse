@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+:root {
+    --main-color: #9900ff;
+    --secondary-color: #00a2ff;
+    --dark-text-color: #3a3a3a;
+    --light-text-color: #fff;
+    --background-color: #f0f8ff;
+    --border-radius: 10px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins";
+    color: var(--dark-text-color);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, #421797, #89379c);
+    padding: 2em;
+    padding-top: 100px; /* Añadir padding superior para evitar el solapamiento con el navbar */
+}
+
+.results-title {
+    text-align: left;
+    color: #fff;
+    font-family: "Poppins";
+    margin-top: 3em;
+    margin-bottom: 30px 0;
+}
+
+.container {
+    max-width: 1000px;
+    width: 100%;
+    padding: 2em;
+    border-radius: 20px;
+    background-color: var(--background-color);
+}
+
+.add-new-post {
+    width: 100%;
+    height: 150px;
+    background: url('images/gato2.2.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#add-new-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+    padding: 0.5em 1.2em;
+    font-size: 1.2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: 0.6s ease;
+}
+
+#add-new-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#add-new-btn svg {
+    width: 30px;
+    fill: var(--light-text-color);
+}
+
+.post-list {
+    margin-top: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.post {
+    width: 300px;
+    padding: 1em;
+    background-color: var(--light-text-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.post::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: var(--main-color);
+    bottom: -10%;
+    right: -10%;
+    border-radius: 50%;
+    filter: blur(10px);
+    opacity: 0;
+    transition: 0.6s ease;
+}
+
+.post:hover::before {
+    opacity: 1;
+    transform: scale(2);
+}
+
+.post img {
+    width: 100%;
+    aspect-ratio: 2/1;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.post div {
+    margin-top: 0.2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-category {
+    padding: 0.2em 0.6em;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    color: var(--light-text-color);
+    text-transform: capitalize;
+}
+
+.post-date {
+    opacity: 0.6;
+}
+
+.post-title {
+    margin-top: 0.2em;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+}
+
+.post-content {
+    margin-top: 0.2em;
+}
+
+/*CHECAR*/
+.post {
+    position: relative;
+    /* Estilo de la publicación */
+}
+
+.favorite-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #a628ea;
+    transition: color 0.3s;
+}
+
+.favorite-icon:hover {
+    color: #7548e9; /* Cambia el color al pasar el cursor por encima */
+}
+
+.favorite-icon.active {
+    color: #8315c7; /* Color del ícono cuando está marcado como favorito */
+}
+
+
+
+/* Estilos del footer */
+footer {
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    width: 100%;
+    margin-top: auto; /* Empuja el footer al final */
+}
+
+body {
+    min-height: 100vh; /* Ocupa toda la pantalla */
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    padding-top: 80px; /* Evita que el header cubra contenido */
+}
+
+
+.footerContainer {
+    width: 100%;
+}
+
+.footerNav ul {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.footerNav ul li a {
+    color: white;
+    margin: 20px;
+    text-decoration: none;
+    font-size: 1.3em;
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+.footerNav ul li a:hover {
+    opacity: 100;
+}
+
+.footerBottom {
+    background-color: rgba(184, 153, 222, 0.393);
+    padding: 20px;
+    text-align: center;
+}
+
+.footerBottom p {
+    color: rgb(255, 255, 255);
+}
+
+.designer {
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+}
+
+.edit-btn {
+    position: absolute;
+    top: 10px; /* Ajusta esta propiedad para posicionar el botón en la parte superior */
+    right: 10px; /* Ajusta esta propiedad para posicionar el botón a la derecha */
+    padding: 0.5em 1em;
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 2; /* Asegura que el botón esté por encima de otros elementos */
+}
+
+.edit-btn:hover {
+    background-color: darken(var(--secondary-color), 10%);
+}
+.favorite-icon {
+    position: absolute;
+    bottom: 10px; /* Ajusta esta propiedad para posicionar el icono en la parte inferior */
+    left: 10px; /* Ajusta esta propiedad para posicionar el icono en la parte derecha */
+    font-size: 24px;
+    cursor: pointer;
+    color: #a628ea;
+    transition: color 0.3s;
+    z-index: 1; /* Asegura que el icono esté por encima de otros elementos */
+}
+
+.post:hover .favorite-icon {
+    color: #7548e9; /* Cambia el color al pasar el cursor por encima */
+}
+
+.favorite-icon.active {
+    color: #8315c7; /* Color del ícono cuando está marcado como favorito */
+}
+

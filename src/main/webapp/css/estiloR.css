@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*, html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #c34eda, #421797, #89379c);
+}
+
+.container {
+    width: 60vw;
+    height: 89vh;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "login";
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
+    border-radius: 20px;
+    background: white;
+    overflow: hidden;
+}
+
+.design {
+    grid-area: design;
+    display: none;
+    position: relative;
+}
+
+.rotate-45 {
+    transform: rotate(45deg);
+}
+
+.design .pill-1 {
+    bottom: 0;
+    right: -40px;
+    position: absolute;
+    width: 40px;
+    height: 200px;
+    background: linear-gradient(#c34eda, #421797, #89379c);
+    border-radius: 40px;
+}
+
+.design .pill-2 {
+    top: -100px;
+    right: 50px;
+    position: absolute;
+    height: 320px;
+    width: 200px;
+    background: linear-gradient(#c34eda, #421797, #89379c);
+    border-radius: 200px;
+    border: 30px solid #e2c5e2;
+}
+
+.design .pill-3 {
+    top: 30px;
+    right: 200px;
+    position: absolute;
+    height: 850px;
+    width: 80px;
+    background: linear-gradient(#c34eda, #421797, #89379c);
+    border-radius: 70px;
+}
+
+.design .pill-4 {
+    bottom: -180px;
+    right: 220px;
+    position: absolute;
+    height: 300px;
+    width: 120px;
+    background: linear-gradient(#c34eda, #421797);
+    border-radius: 70px;
+}
+
+.registro {
+    grid-area: registro;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: white;
+}
+
+.login h3.title {
+    margin: 15px 0;
+}
+
+.text-input {
+    background: #e6e6e6;
+    height: 40px;
+    display: flex;
+    width: 60%;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 15px;
+    margin: 5px 0;
+}
+
+.text-input input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.text-input i {
+    color: #686868;
+}
+
+::placeholder {
+    color: #9a9a9a;
+}
+
+.login-btn {
+    width: 68%;
+    padding: 10px;
+    color: white;
+    background: linear-gradient(to right, #421797, #89379c, #c34eda);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+a {
+    font-size: 12px;
+    color: #9a9a9a;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+}
+
+a.forgot {
+    margin-top: 15px;
+}
+
+.create {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 30px;
+}
+
+.create i {
+    color: #9a9a9a;
+    margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 50% 50%;
+        grid-template-areas: "registro design";
+    }
+
+    .design {
+        display: block;
+    }
+    
+    
+}
+
+.custom-file-upload {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #f8f8f8;
+    border: 2px solid #ccc;
+    text-align: center;
+    transition: background-color 0.3s, border-color 0.3s;
+    overflow: hidden;
+    position: relative;
+    margin: 15px; 
+}
+
+.custom-file-upload:hover {
+    background-color: #e0e0e0;
+    border-color: #aaa;
+}
+
+.custom-file-upload img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
