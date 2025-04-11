@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meowverse - Busqueda Avanzada</title>
     <link rel="icon" type="image/png" href="images/meowverseSL.png">
-    <link rel="stylesheet" href="../css/estiloBA.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estiloBA.css">
 </head>
 <body>
     <h1 class="results-title">Resultados de tu busqueda...</h1>
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <iframe src="navbar.html" width="100%" height="80" style="border:none; position:fixed; top:0; left:0; z-index:1000;"></iframe>
+    <iframe src="${pageContext.request.contextPath}/jsp/navbar.jsp" width="100%" height="80" style="border:none; position:fixed; top:0; left:0; z-index:1000;"></iframe>
     <!-- footer<iframe src="footer.html" width="100%" height="80" style="border:none; position:relative; bottom:0; left:0; z-index:10;"></iframe>
     -->
 

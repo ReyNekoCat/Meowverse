@@ -18,7 +18,7 @@ public class connection {
     //Los atributos de esta clase sirven para configurar la cadena de conexion a la bd.
     String db="meowverse_DB";
     String url = "jdbc:mysql://localhost:3306/";
-    String user = "admin";
+    String user = "root";
     String password ="password";
     String driver = "com.mysql.cj.jdbc.Driver";
     

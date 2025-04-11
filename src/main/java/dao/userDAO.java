@@ -4,7 +4,7 @@
  */
 package dao;
 
-import models.user;
+import models.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,60 +32,73 @@ public class userDAO {
     * Select
     */
     
-    public List<user> getAll(){ 
-        List<user> listaUsuarios = new ArrayList<>();  
+    public List<User> getAll(){ 
+        List<User> userList = new ArrayList<>();  
         PreparedStatement ps=null;
 
             try{
-                ps = conn.prepareStatement("Select * From usuarios ");
+                ps = conn.prepareStatement("Select * From users");
                 ResultSet rs = ps.executeQuery();
 
                 while(rs.next()){
-                    user usuario = new user();
-
-                    usuario.setUsername(rs.getString("nombreusuario"));
-                    usuario.setPass(rs.getString("pass"));
-                    listaUsuarios.add(usuario);
+                    User user = new User();
+                    
+                    user.setUserId(rs.getInt("ID"));
+                    user.setFirstN(rs.getString("first_name"));
+                    user.setLastN(rs.getString("last_name"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPFP(rs.getString("profile_image"));
+                    user.setUsername(rs.getString("username"));
+                    user.setPass(rs.getString("user_password"));
+                    user.setBirthdate(rs.getDate("birth_date"));
+                    user.setCreationDate(rs.getDate("creation_date"));
+                    userList.add(user);
                 }
             }catch(SQLException ex){}
-        return listaUsuarios;      
+        return userList;      
     }
     
-    public user getUsuario(int id){
-        user usuario = new user();
-        return usuario;   
+    public User getUser(int id){
+        User user = new User();
+        return user;   
     }
     
     //Metodo para realizar un insert, tienen que agregar todos lo atributos que solicita la tabla
     //exceptuando los que se agregar directamente en la base como el id autoincrement 
-    public boolean insertUsuario(user usuario){
+    public boolean insertUser(User user){
     
         PreparedStatement ps=null;       
         try{
-            //cada "?" es un valor almacenado en el modelo.
-            ps = conn.prepareStatement("Insert Into usuarios(nombreusuario,pass) Values (?,?)");
+            //cada "?" es un valor almacenado en el modelo.         
+            ps = conn.prepareStatement("Insert Into users(first_name, last_name, birth_date, email, profile_image, username, user_password) Values (?,?,?,?,?,?,?)");
 
             //Esos valores se llenan por medio del siguiente metodo y el primer argumento que se pide es la posicion del "?"
             //contando de izquierda a derecha, se tiene que espesificar que tipo de dato se va almacenar, ejemplo: setString, int setInt,etc.
-            ps.setString(1, usuario.getUsername());
-            ps.setString(2, usuario.getPass());
+            ps.setString(1, user.getFirstN());
+            ps.setString(2, user.getLastN());
+            ps.setDate(3, user.getBirthdate());
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getPFP());
+            ps.setString(6, user.getUsername());
+            ps.setString(7, user.getPass());
             int insert = ps.executeUpdate();
 
             if(insert!=0)
                 return true;
             else
                 return false;
+            
         }catch(SQLException ex){
             return false;
         }      
     }   
-    public void updateUsuario(user usuario){
+    public void updateUser(User user){
     PreparedStatement ps=null;
         
         try{
-            ps = conn.prepareStatement("Update usuarios set nombreusuario=(?) where idUsuario=(?)");
-            ps.setString(1, usuario.getUsername());
-            ps.setInt(2, usuario.getUserId());
+            ps = conn.prepareStatement("Update users set username=(?) where ID=(?)");
+            ps.setString(1, user.getUsername());
+            ps.setInt(2, user.getUserId());
             int update = ps.executeUpdate();
 
             if(update!=0){
@@ -97,12 +110,12 @@ public class userDAO {
         
         }
     }   
-    public void deleteUsuario(int idUsuario){
+    public void deleteUser(int idUser){
         PreparedStatement ps=null;      
         try{
-            ps = conn.prepareStatement("Update usuarios set estatus=(?) where idUsuario=(?)");
-            ps.setBoolean(1, false);
-            ps.setInt(2, idUsuario);
+            ps = conn.prepareStatement("Update users set deleted=(?) where ID=(?)");
+            ps.setBoolean(1, true);
+            ps.setInt(2, idUser);
 
             int delete = ps.executeUpdate();
 
@@ -115,23 +128,23 @@ public class userDAO {
         
         }
     }    
-    public user getUsuario(String nombreUsuario,String password){
+    public User getUser(String username,String password){
         PreparedStatement ps=null;
-        user usuario = null;
+        User user = null;
         try{
-            ps = conn.prepareStatement("Select * From usuarios where nombreusuario=(?) and pass=(?)");
-            ps.setString(1, nombreUsuario);
+            ps = conn.prepareStatement("Select * From users where username=(?) and user_password=(?)");
+            ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                usuario = new user();
-                usuario.setUsername(rs.getString("nombreusuario"));
-                usuario.setPass(rs.getString("pass"));
+                user = new User();
+                user.setUsername(rs.getString("username"));
+                user.setPass(rs.getString("password"));
             }
         }catch(SQLException ex){
 
         }
-    return usuario;
+    return user;
     }   
 }

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meowverse</title>
     <link rel="icon" type="image/png" href="images/meowverseSL.png">
-    <link rel="stylesheet" href="../css/estiloH.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estiloH.css">
 </head>
 <body>
-    <iframe src="navbar.html" width="100%" height="80" style="border:none; position:fixed; top:0; left:0; z-index:1000;"></iframe>
+    <iframe src="${pageContext.request.contextPath}/jsp/navbar.jsp" width="100%" height="80" style="border:none; position:fixed; top:0; left:0; z-index:1000;"></iframe>
 
     <div class="container">
         

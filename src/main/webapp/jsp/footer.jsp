@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/estiloF.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estiloF.css">
 </head>
 <body>
     <footer style="position: relative; z-index: 10;">
