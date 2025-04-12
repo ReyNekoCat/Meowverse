@@ -164,3 +164,31 @@ a.forgot {
         display: block;
     }
 }
+
+.text-input {
+    position: relative; /* Añade esto si no está */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #686868;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 2;
+    user-select: none;
+}
+
+.toggle-password:hover {
+    color: #302b39;
+}
+
+/* Ajuste para cuando hay error */
+.text-input.error .toggle-password {
+    right: 11px; /* Para no solaparse con el mensaje de error */
+    color: #381a70;
+    margin-top: 5px;
+}

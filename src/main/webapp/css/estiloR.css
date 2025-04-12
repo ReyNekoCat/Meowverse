@@ -16,7 +16,7 @@ body {
 
 .container {
     width: 60vw;
-    height: 89vh;
+    height: 95vh;
     display: grid;
     grid-template-columns: 100%;
     grid-template-areas: "login";
@@ -43,7 +43,7 @@ body {
     width: 40px;
     height: 200px;
     background: linear-gradient(#c34eda, #421797, #89379c);
-    border-radius: 40px;
+    border-radius: 10px;
 }
 
 .design .pill-2 {
@@ -87,9 +87,6 @@ body {
     background: white;
 }
 
-.login h3.title {
-    margin: 15px 0;
-}
 
 .text-input {
     background: #e6e6e6;
@@ -100,6 +97,7 @@ body {
     border-radius: 10px;
     padding: 0 15px;
     margin: 5px 0;
+    position: relative;
 }
 
 .text-input input {
@@ -109,6 +107,35 @@ body {
     width: 100%;
     height: 100%;
     margin-left: 10px;
+}
+
+.text-input {
+    position: relative; /* Necesario para posicionar el ícono */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+/* Cambia el color al pasar el mouse */
+.toggle-password:hover {
+    color: #333;
+}
+
+.text-input.error .toggle-password {
+    right: 30px;
+}
+
+/* Estilo para el input cuando hay error */
+.text-input.error {
+    border: 2px solid #ff387e;
 }
 
 .text-input i {
@@ -127,7 +154,8 @@ body {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 a {
@@ -169,8 +197,8 @@ a.forgot {
 
 .custom-file-upload {
     display: inline-block;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     cursor: pointer;
     border-radius: 50%;
     background-color: #f8f8f8;
@@ -179,7 +207,7 @@ a.forgot {
     transition: background-color 0.3s, border-color 0.3s;
     overflow: hidden;
     position: relative;
-    margin: 15px; 
+    margin-top: 5px;
 }
 
 .custom-file-upload:hover {
@@ -198,3 +226,91 @@ a.forgot {
     display: none;
 }
 
+
+/* Estilos mejorados para mensajes de error con icono y tooltip */
+.error-message {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    color: #ff387e;
+    font-size: 12px;
+    height: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    padding-left: 0px;
+    width: 7%;
+    visibility: visible;
+    opacity: 1;
+}
+
+.error-message::before {
+    content: "⚠";
+    color: #ea0081;
+    font-size: 20px;
+    margin-right: 0px;
+    position: absolute;
+    left: 0;
+}
+
+.error-message .tooltip-text {
+    visibility: hidden;
+    width: auto;
+    background-color: #ff387e;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+}
+
+.error-message:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.text-input input.valid {
+    border: 2px solid #09c3c0;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .error-message .tooltip-text {
+        left: 0;
+        bottom: 100%;
+        white-space: normal;
+        width: 200px;
+    }
+}
+
+.error-message {
+    position: relative;
+    display: none; /* Cambiado de inline-flex a none */
+    align-items: center;
+    color: #ff387e;
+    font-size: 12px;
+    height: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 0px;
+    width: 5%;
+    visibility: visible;
+    opacity: 1;
+}
+
+/*.text-input input.error {
+    border: 2px solid #ff387e;
+    width: 60%;
+    height: 40px;
+    width: 3000%;
+    border-radius: 10px;
+    padding: 0 15px;
+    margin: 10px 0;
+
+}*/
