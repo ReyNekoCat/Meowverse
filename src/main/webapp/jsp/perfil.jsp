@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meowverse - Perfil</title>
     <link rel="icon" type="image/png" href="images/meowverseSL.png">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estiloP.css">
+    <link rel="stylesheet" href="Styles/estiloP.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
-    <iframe src="${pageContext.request.contextPath}/jsp/navbar.jsp" width="100%" height="80" style="border:none; position:fixed; top:0; left:0; z-index:1000;"></iframe>
+    <iframe src="navbar.html" width="100%" height="80" style="border:none; position:fixed; top:0; left:0; z-index:1000;"></iframe>
     <Section class="seccion-perfil-usuario">
         <div class="perfil-usuario-header">
             <div class="perfil-usuario-portada">
@@ -42,22 +42,22 @@
                     <li><i class="icono fas fa-key"></i> Contraseña:</li> 
                 </ul> 
                 <button class="btn">Editar</button>
-                <button class="btn">Cerrar sesi�n</button>
+                <button class="btn">Cerrar sesión</button>
             </div>
         </div>
     </section>
     
-    <footer>
+    <footer style="position: relative; z-index: 10;">
         <div class="footerContainer">
             <div class="footerNav">
                 <ul>
-                    <li><a href="">Terminos y condiciones</a></li>
-                    <li><a href="">Equipo</a></li>
+                    <li><a href="termC.html" target="_self">Términos y condiciones</a></li>
+                    <li><a href="sobreN.html" target="_self">Acerca de nosotros</a></li>
                 </ul>
             </div>
-            <div class="footerBottom">
-                <p>Copyright &copy;2025; Designed by <span class="designer">Areli Hern�ndez y Rey Aguirre</span></p>
-            </div>
+        </div>
+        <div class="footerBottom">
+            <p>Copyright &copy;2025; Designed by <span class="designer">Areli Hernández y Rey Aguirre</span></p>
         </div>
     </footer>
     

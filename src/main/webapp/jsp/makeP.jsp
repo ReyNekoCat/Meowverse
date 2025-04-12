@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meowverse - Crear Publicación</title>
+    <title>Meowverse - Crear PublicaciÃ³n</title>
     <link rel="icon" type="image/png" href="images/meowverseSL.png">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estiloMP.css">
+    <link rel="stylesheet" href="Styles/estiloMP.css">
 </head>
 <body>
 

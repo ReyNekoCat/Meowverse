@@ -11,7 +11,7 @@
 
 * {
     padding: 0;
-    margin: 50;
+    margin: 0;
     box-sizing: border-box;
     font-family: "Poppins";
     color: var(--dark-text-color);
@@ -27,17 +27,13 @@ body {
     padding-top: 100px; /* Añadir padding superior para evitar el solapamiento con el navbar */
 }
 
-
-iframe {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    width: 100%;
-    height: 80px;
-    border: none;
+.results-title {
+    text-align: left;
+    color: #fff;
+    font-family: "Poppins";
+    margin-top: 3em;
+    margin-bottom: 30px 0;
 }
-
 
 .container {
     max-width: 1000px;
@@ -45,21 +41,6 @@ iframe {
     padding: 2em;
     border-radius: 20px;
     background-color: var(--background-color);
-    margin: 0 auto; 
-    position: relative; 
-    z-index: 1; 
-}
-
-.post-list {
-    margin-top: 2em; 
-}
-
-.welcome-message {
-    font-family: 'Poppins', cursive;
-    font-size: 36px;
-    color: #29116f;
-    text-align: center;
-    margin: 10px 0;
 }
 
 .add-new-post {
@@ -72,7 +53,6 @@ iframe {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px 0;
 }
 
 #add-new-btn {
@@ -105,53 +85,18 @@ iframe {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1em; /* Espacio entre los posts */
+    gap: 1em;
 }
 
 .post {
-    position: relative; /* Asegura que los elementos dentro del post se puedan posicionar relativamente */
-    width: calc(100% - 2em);
-    margin: 1em;
+    width: 300px;
     padding: 1em;
     background-color: var(--light-text-color);
     border-radius: var(--border-radius);
     cursor: pointer;
+    position: relative;
     overflow: hidden;
 }
-
-.edit-btn {
-    position: absolute;
-    top: 10px; /* Ajusta esta propiedad para posicionar el botón en la parte superior */
-    right: 10px; /* Ajusta esta propiedad para posicionar el botón a la derecha */
-    padding: 0.5em 1em;
-    background-color: rgb(26, 118, 238);
-    color: var(--light-text-color);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: background-color 0.3s;
-    z-index: 2; /* Asegura que el botón esté por encima de otros elementos */
-}
-
-.edit-btn:hover {
-    background-color: rgb(8, 94, 165);
-}
-
-.post img {
-    width: 100%;
-    aspect-ratio: 2/1;
-    object-fit: cover;
-    border-radius: var(--border-radius);
-    margin-top: 40px; /* Ajusta esta propiedad para agregar margen debajo del botón de edición */
-}
-
-.post div {
-    margin-top: 0.2em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 
 .post::before {
     content: '';
@@ -214,30 +159,24 @@ iframe {
     /* Estilo de la publicación */
 }
 
-.favorite-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    outline: none;
-    position: absolute;
-    bottom: 10px; /* Ajusta esta propiedad para posicionar el icono en la parte inferior */
-    right: 10px; /* Ajusta esta propiedad para posicionar el icono en la parte derecha */
-
-}
-
 .favorite-icon {
-    fill: #ccc; /* Color inicial (no favorito) */
-    transition: fill 0.3s ease;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #a628ea;
+    transition: color 0.3s;
 }
 
-.favorite-btn:hover .favorite-icon {
-    fill: #9447ff; /* Color al pasar el mouse */
+.favorite-icon:hover {
+    color: #7548e9; /* Cambia el color al pasar el cursor por encima */
 }
 
-.favorite-btn.active .favorite-icon {
-    fill: #9447ff; /* Color cuando está activo/favorito */
+.favorite-icon.active {
+    color: #8315c7; /* Color del ícono cuando está marcado como favorito */
 }
+
 
 
 /* Estilos del footer */
@@ -256,6 +195,7 @@ body {
     flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
     padding-top: 80px; /* Evita que el header cubra contenido */
 }
+
 
 .footerContainer {
     width: 100%;
@@ -299,45 +239,39 @@ body {
     margin: 0px 5px;
 }
 
- /* Estilos para la paginación */
- .pagination {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-    flex-wrap: wrap;
-}
-
-.pagination a {
-    color: #421797;
-    padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    margin: 0 4px;
-    border-radius: 5px;
+.edit-btn {
+    position: absolute;
+    top: 10px; /* Ajusta esta propiedad para posicionar el botón en la parte superior */
+    right: 10px; /* Ajusta esta propiedad para posicionar el botón a la derecha */
+    padding: 0.5em 1em;
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
     transition: background-color 0.3s;
+    z-index: 2; /* Asegura que el botón esté por encima de otros elementos */
 }
 
-.pagination a.active {
-    background: linear-gradient(to right, #421797, #89379c, #c34eda);
-    color: white;
-    border: 1px solid #421797;
+.edit-btn:hover {
+    background-color: darken(var(--secondary-color), 10%);
+}
+.favorite-icon {
+    position: absolute;
+    bottom: 10px; /* Ajusta esta propiedad para posicionar el icono en la parte inferior */
+    left: 10px; /* Ajusta esta propiedad para posicionar el icono en la parte derecha */
+    font-size: 24px;
+    cursor: pointer;
+    color: #a628ea;
+    transition: color 0.3s;
+    z-index: 1; /* Asegura que el icono esté por encima de otros elementos */
 }
 
-.pagination a:hover:not(.active) {
-    background-color: #f0e6ff;
+.post:hover .favorite-icon {
+    color: #7548e9; /* Cambia el color al pasar el cursor por encima */
 }
 
-.pagination a.disabled {
-    color: #aaa;
-    pointer-events: none;
-    cursor: default;
+.favorite-icon.active {
+    color: #8315c7; /* Color del ícono cuando está marcado como favorito */
 }
 
-/* Ocultar posts que no están en la página actual */
-.post {
-    display: none;
-}
-
-.post.show {
-    display: block;
-}
