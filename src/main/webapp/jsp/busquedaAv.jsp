@@ -33,7 +33,7 @@
             </div>
             <h2 class="post-title">post02</h2>
             <p class="post-content">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, tempora.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, tempora!.
             </p>
             <button class="edit-btn">Editar</button>
                 <svg class="favorite-icon" viewBox="0 0 24 24" width="30" height="30">
