@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meowverse</title>
     <link rel="icon" type="image/png" href="images/meowverseSL.png">
-    <link rel="stylesheet" href="estiloH.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estiloH.css">
 </head>
 <body>
     <iframe src="navbar.html" width="100%" height="80" style="border:none; position:fixed; top:0; left:0; z-index:1000;"></iframe>
 
     <div class="container">
         
-        <h1 class="welcome-message">¡Bienvenido a Meowverse!</h1>
+        <h1 class="welcome-message">�Bienvenido a Meowverse!</h1>
 
         <div class="add-new-post" id="post-background">
             <button id="add-new-btn" onclick="window.location.href='makeP.html'">
@@ -247,7 +247,7 @@
                 
                 // Números de página
                 for (let i = 1; i <= totalPages; i++) {
-                    paginationHTML += `<a href="#" class="page-number ${i === 1 ? 'active' : ''}" data-page="${i}">${i}</a>`;
+                    paginationHTML += `<a href="#" class="page-number ${i == 1 ? 'active' : ''}" data-page="${i}">${i}</a>`;
                 }
                 
                 // Botón Siguiente
