@@ -93,8 +93,7 @@ public class userDAO {
         }      
     }   
     public void updateUser(User user){
-    PreparedStatement ps=null;
-        
+        PreparedStatement ps=null;
         try{
             ps = conn.prepareStatement("Update users set username=(?) where ID=(?)");
             ps.setString(1, user.getUsername());
@@ -107,7 +106,7 @@ public class userDAO {
                 //Mensaje Error
             }
         }catch(SQLException ex){
-        
+
         }
     }   
     public void deleteUser(int idUser){

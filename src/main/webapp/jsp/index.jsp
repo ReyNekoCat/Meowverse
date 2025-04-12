@@ -17,10 +17,9 @@
             <div class="pill-2 rotate-45"></div>
             <div class="pill-3 rotate-45"></div>
             <div class="pill-4 rotate-45"></div>
-        </div>
-        
-        <form action="../SvLogin" method="get">
+        </div>  
         <div class="login">
+        <form action="../SvLogin" method="get">
             <h3 class="title">¡Bienvenido!</h3>
             <div class="text-input">
                 <i class="ri-user-fill"></i>

@@ -70,7 +70,7 @@
                 </ul>
             </div>
             <div class="footerBottom">
-                <p>Copyright &copy;2025; Designed by <span class="designer">Areli Hern√°ndez y Rey Aguirre</span></p>
+                <p>Copyright &copy;2025; Designed by <span class="designer">Areli Hern·ndez y Rey Aguirre</span></p>
             </div>
         </div>
     </footer>

@@ -39,7 +39,7 @@ public class SvReg extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+               
         //Se reciben la informacion del formulario que envia la vista
         String username = request.getParameter("username");     
         String password = request.getParameter("password");
@@ -79,13 +79,13 @@ public class SvReg extends HttpServlet {
             user.setBirthdate(BirthdateSQL);
             user.setUsername(username);
             user.setPass(password);
-                   
+                    
             //Se declara el objeto de la conexion
             connection conn =  new connection();
          
             //Conectamos el DAO utilizando el objeto de Conexion y el metodo conectar()
             userDAO uDao = new userDAO(conn.Connect());
-                
+              
             //Recibimos la respuesta del metodo del DAO
             boolean insert = uDao.insertUser(user);
 

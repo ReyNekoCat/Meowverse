@@ -12,7 +12,7 @@
 
     <div class="container">
         
-        <h1 class="welcome-message">Â¡Bienvenido a Meowverse!</h1>
+        <h1 class="welcome-message">¡Bienvenido a Meowverse!</h1>
 
         <div class="add-new-post">
             <button id="add-new-btn" onclick="window.location.href='makeP.html'">
