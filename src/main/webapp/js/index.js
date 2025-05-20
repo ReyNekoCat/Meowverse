@@ -71,11 +71,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Validar credenciales
-            if (username === 'Admin12' && password === '12As.111') {
-                window.location.href = 'home.html';
-            } else {
-                showError('Usuario o contraseña incorrectos');
-            }
+            //if (username === 'Admin12' && password === '12As.111') {
+            //    window.location.href = 'home.jsp';
+            //} else {
+            //    showError('Usuario o contraseña incorrectos');
+            //}
         });
     }
 

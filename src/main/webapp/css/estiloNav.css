@@ -11,9 +11,9 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background: linear-gradient(to bottom right, #5f1f9fb0, #5f1f9fb0);
+            background: linear-gradient(to bottom right, #a02fe1b0, #8e1f9fb0);
             padding: 2em;
-            padding-top: 100px;
+            padding-top: 45px;
             overflow-x: hidden;
         }
         
@@ -23,7 +23,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(167, 0, 205, 0.2);
+            background: rgba(36, 3, 90, 0.2);
             padding: 15px 5%;
             display: flex;
             align-items: center;
@@ -136,44 +136,68 @@
             color: #ffffff;
         }
         
-        .advanced-search-menu {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 280px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 3001;
-            padding: 15px;
-            border-radius: 5px;
+        /* Estilos del modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             right: 0;
-            top: calc(100% + 5px);
-            animation: fadeIn 0.3s ease;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+        .advanced-search-modal {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            animation: modalFadeIn 0.3s ease;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            padding: 20px;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .advanced-search-menu h4 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 16px;
-            color: #333;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-        }
-        
+        /* Estilos para los filtros */
         .filter-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .filter-group label {
             display: block;
             margin-bottom: 8px;
-            font-size: 14px;
-            color: #555;
             font-weight: 500;
+            color: #333;
         }
         
         .filter-group select {
@@ -181,17 +205,16 @@
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 14px;
-        }
-        
-        .filter-group input[type="radio"] {
-            margin-right: 8px;
         }
         
         .radio-option {
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
+        }
+        
+        .radio-option input {
+            margin-right: 8px;
         }
         
         .radio-option label {
@@ -203,15 +226,43 @@
             background-color: #933ecb;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 14px;
-            width: 100%;
+            font-size: 16px;
+            width: calc(100% - 40px);
+            margin: 0 20px 20px;
             transition: background-color 0.3s;
-            margin-top: 10px;
         }
         
         .apply-btn:hover {
             background-color: #7a2da8;
         }
+
+        /* Nuevos estilos para posicionar el modal cerca del campo de búsqueda */
+        .search-container {
+            position: relative;
+        }
+        
+        .modal-overlay {
+    position: fixed;
+    top: 70px; /* Altura del navbar (ajusta según necesites) */
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    padding: 0 5%; /* Mismo padding horizontal que el navbar */
+    backdrop-filter: blur(2px); /* Opcional: efecto de desenfoque */
+}
+        
+.advanced-search-modal {
+    background: white;
+    width: 100%; /* Mismo ancho que el navbar */
+    max-width: 100%; /* Sin límite de ancho */
+    border-radius: 0 0 8px 8px; /* Bordes redondeados solo abajo */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: modalFadeIn 0.3s ease;
+    margin-top: 0; /* Pegado al navbar */
+}

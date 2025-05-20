@@ -16,7 +16,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const errorElement = document.getElementById(`${inputId}-error`);
         errorElement.innerHTML = `<span class="tooltip-text">${message}</span>`;
         errorElement.style.display = 'inline-flex';
-        document.getElementById(inputId).classList.add('error');
+        
+        const inputElement = document.getElementById(inputId);
+        inputElement.classList.add('error');
+        
+        // Mover el icono toggle-password cuando hay error
+        const toggleIcon = inputElement.parentElement.querySelector('.toggle-password');
+        if (toggleIcon) {
+            toggleIcon.style.right = '32px'; // Mover 20px a la izquierda (ajusta según necesites)
+        }
     }
 
     // Función para limpiar errores 
@@ -24,7 +32,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const errorElement = document.getElementById(`${inputId}-error`);
         errorElement.innerHTML = '';
         errorElement.style.display = 'none';
-        document.getElementById(inputId).classList.remove('error');
+        
+        const inputElement = document.getElementById(inputId);
+        inputElement.classList.remove('error');
+        
+        // Restaurar posición original del icono toggle-password
+        const toggleIcon = inputElement.parentElement.querySelector('.toggle-password');
+        if (toggleIcon) {
+            toggleIcon.style.right = '12px'; // Posición original
+        }
     }
     
     // Función para mostrar/ocultar contraseña
@@ -162,31 +178,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
     
-    function validateImage() {
-        const file = profileImgInput.files[0];
-        const imgError = document.getElementById('img-error');
-        
-        if (!file) {
-            imgError.textContent = 'Selecciona una imagen de perfil';
-            return false;
-        }
-        
-        // Validar tipo de archivo
-        const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (!validTypes.includes(file.type)) {
-            imgError.textContent = 'Solo se permiten imágenes (JPEG, PNG, GIF)';
-            return false;
-        }
-        
-        // Validar tamaño de archivo (max 2MB)
-        if (file.size > 2 * 1024 * 1024) {
-            imgError.textContent = 'La imagen no debe superar 2MB';
-            return false;
-        }
-        
-        imgError.textContent = '';
-        return true;
-    }
     
     // Función para previsualizar la imagen
     function previewImage(event) {
@@ -234,12 +225,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const isEmailValid = validateEmail();
         const isPasswordValid = validatePassword();
         const isConfirmPasswordValid = validateConfirmPassword();
-        const isImageValid = validateImage();
         
         // Si todas las validaciones son correctas
         if (isUsernameValid && isFirstNameValid && isLastNameValid && 
             isBirthdateValid && isEmailValid && isPasswordValid && 
-            isConfirmPasswordValid && isImageValid) {
+            isConfirmPasswordValid) {
             
             // Crear objeto con los datos del usuario
             const userData = {
@@ -249,15 +239,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 birthdate: document.getElementById('birthdate').value,
                 email: document.getElementById('email').value.trim(),
                 password: document.getElementById('password').value,
-                profileImage: previewImg.src
             };
             
-            // Aquí normalmente enviarías los datos al servidor
-            console.log('Datos del usuario:', userData);
+            // Mostrar modal de éxito
+            const successModal = document.getElementById('success-modal');
+            successModal.style.display = 'flex';
             
-            // Simular envío exitoso
-            alert('Registro exitoso! Redirigiendo...');
-            // window.location.href = 'bienvenida.html'; // Redirigir después del registro
+            // Cerrar modal al hacer clic en el botón
+            document.getElementById('modal-close-btn').addEventListener('click', function() {
+                successModal.style.display = 'none';
+                // Opcional: redirigir al usuario a la página de inicio de sesión
+                window.location.href = 'index.html';
+            });
+            
+            // También puedes cerrar el modal haciendo clic fuera del contenido
+            successModal.addEventListener('click', function(e) {
+                if (e.target === successModal) {
+                    successModal.style.display = 'none';
+                    window.location.href = 'index.html';
+                }
+            });
         }
     });
 });

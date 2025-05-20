@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T√©rminos y Condiciones - Meowverse</title>
-    <link rel="icon" type="image/png" href="images/meowverseSL.png">
+    <title>TÈrminos y Condiciones - Meowverse</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/meowverseSL.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -189,14 +189,14 @@
         <div class="terms">
             <div class="terms-header">
                     <h1>Meowverse</h1>
-                    <h1>T√©rminos y Condiciones</h1>
-                <div class="last-updated">√öltima actualizaci√≥n: 15 de junio, 2023</div>
+                    <h1>TÈrminos y Condiciones</h1>
+                <div class="last-updated">⁄ltima actualizaciÛn: 15 de junio, 2023</div>
             </div>
             
             <div class="terms-content">
                 <div class="terms-section">
-                    <h2>1. Aceptaci√≥n de los T√©rminos</h2>
-                    <p>Al acceder y utilizar Meowverse ("la Plataforma"), usted acepta cumplir con estos T√©rminos y Condiciones, nuestra Pol√≠tica de Privacidad y todas las leyes y regulaciones aplicables.</p>
+                    <h2>1. AceptaciÛn de los TÈrminos</h2>
+                    <p>Al acceder y utilizar Meowverse ("la Plataforma"), usted acepta cumplir con estos TÈrminos y Condiciones, nuestra PolÌtica de Privacidad y todas las leyes y regulaciones aplicables.</p>
                 </div>
                 
                 <div class="terms-section">
@@ -204,18 +204,18 @@
                     <p>Meowverse es una plataforma social para amantes de los gatos que permite:</p>
                     <ul>
                         <li>Compartir fotos y videos de gatos</li>
-                        <li>Conectar con otros due√±os de gatos</li>
-                        <li>Participar en comunidades tem√°ticas</li>
+                        <li>Conectar con otros dueÒos de gatos</li>
+                        <li>Participar en comunidades tem·ticas</li>
                         <li>Acceder a contenido exclusivo sobre cuidado felino</li>
                     </ul>
-                    <p>Usted se compromete a usar la Plataforma solo para fines legales y de acuerdo con estos T√©rminos.</p>
+                    <p>Usted se compromete a usar la Plataforma solo para fines legales y de acuerdo con estos TÈrminos.</p>
                 </div>
                 
                 <div class="terms-section">
                     <h2>3. Cuentas de Usuario</h2>
-                    <p>Para acceder a ciertas funciones, deber√° crear una cuenta. Usted acepta:</p>
+                    <p>Para acceder a ciertas funciones, deber· crear una cuenta. Usted acepta:</p>
                     <ul>
-                        <li>Proporcionar informaci√≥n exacta y actualizada</li>
+                        <li>Proporcionar informaciÛn exacta y actualizada</li>
                         <li>Mantener la confidencialidad de sus credenciales</li>
                         <li>Ser responsable de todas las actividades bajo su cuenta</li>
                         <li>Notificarnos inmediatamente sobre cualquier uso no autorizado</li>
@@ -224,8 +224,8 @@
                 
                 <div class="terms-section">
                     <h2>4. Contenido del Usuario</h2>
-                    <p>Usted conserva los derechos de cualquier contenido que publique, pero nos otorga una licencia mundial no exclusiva para usar, mostrar y distribuir dicho contenido en relaci√≥n con la Plataforma.</p>
-                    <p>No est√° permitido publicar contenido que:</p>
+                    <p>Usted conserva los derechos de cualquier contenido que publique, pero nos otorga una licencia mundial no exclusiva para usar, mostrar y distribuir dicho contenido en relaciÛn con la Plataforma.</p>
+                    <p>No est· permitido publicar contenido que:</p>
                     <ul>
                         <li>Sea ilegal, difamatorio u ofensivo</li>
                         <li>Infrinja derechos de terceros</li>
@@ -236,22 +236,20 @@
                 
                 <div class="terms-section">
                     <h2>5. Privacidad</h2>
-                    <p>Nuestra <a href="#" style="color: #c34eda;">Pol√≠tica de Privacidad</a> explica c√≥mo recopilamos, usamos y compartimos su informaci√≥n personal. Al usar la Plataforma, usted acepta nuestras pr√°cticas de privacidad.</p>
+                    <p>Nuestra <a href="#" style="color: #c34eda;">PolÌtica de Privacidad</a> explica cÛmo recopilamos, usamos y compartimos su informaciÛn personal. Al usar la Plataforma, usted acepta nuestras pr·cticas de privacidad.</p>
                 </div>
                 
                 <div class="terms-section">
                     <h2>6. Modificaciones</h2>
-                    <p>Podemos modificar estos T√©rminos ocasionalmente. Le notificaremos sobre cambios significativos, y su uso continuado constituir√° aceptaci√≥n de los nuevos t√©rminos.</p>
+                    <p>Podemos modificar estos TÈrminos ocasionalmente. Le notificaremos sobre cambios significativos, y su uso continuado constituir· aceptaciÛn de los nuevos tÈrminos.</p>
                 </div>
                 
                 <div class="terms-section">
-                    <h2>7. Terminaci√≥n</h2>
-                    <p>Nos reservamos el derecho de suspender o terminar su acceso a la Plataforma por violaciones de estos T√©rminos o por cualquier motivo a nuestra discreci√≥n.</p>
+                    <h2>7. TerminaciÛn</h2>
+                    <p>Nos reservamos el derecho de suspender o terminar su acceso a la Plataforma por violaciones de estos TÈrminos o por cualquier motivo a nuestra discreciÛn.</p>
                 </div>
-            </div>
-            
+            </div>    
             <button class="back-btn" onclick="window.history.back()">Volver</button>
-
         </div>
     </div>
 </body>

@@ -159,25 +159,6 @@ body {
     /* Estilo de la publicación */
 }
 
-.favorite-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #a628ea;
-    transition: color 0.3s;
-}
-
-.favorite-icon:hover {
-    color: #7548e9; /* Cambia el color al pasar el cursor por encima */
-}
-
-.favorite-icon.active {
-    color: #8315c7; /* Color del ícono cuando está marcado como favorito */
-}
-
-
 
 /* Estilos del footer */
 footer {
@@ -253,25 +234,54 @@ body {
     z-index: 2; /* Asegura que el botón esté por encima de otros elementos */
 }
 
-.edit-btn:hover {
-    background-color: darken(var(--secondary-color), 10%);
-}
-.favorite-icon {
-    position: absolute;
-    bottom: 10px; /* Ajusta esta propiedad para posicionar el icono en la parte inferior */
-    left: 10px; /* Ajusta esta propiedad para posicionar el icono en la parte derecha */
-    font-size: 24px;
+.favorite-btn {
+    background: none;
+    border: none;
     cursor: pointer;
-    color: #a628ea;
-    transition: color 0.3s;
-    z-index: 1; /* Asegura que el icono esté por encima de otros elementos */
+    font-size: 24px;
+    padding: 0;
+    outline: none;
+    position: absolute;
+    bottom: 5px; /* Ajusta esta propiedad para posicionar el icono en la parte inferior */
+    left: 255px; /* Ajusta esta propiedad para posicionar el icono en la parte derecha */
+
 }
 
-.post:hover .favorite-icon {
-    color: #7548e9; /* Cambia el color al pasar el cursor por encima */
+.favorite-icon {
+    fill: #ccc; /* Color inicial (no favorito) */
+    transition: fill 0.3s ease;
 }
 
-.favorite-icon.active {
-    color: #8315c7; /* Color del ícono cuando está marcado como favorito */
+.favorite-btn:hover .favorite-icon {
+    fill: #9447ff;
 }
 
+.favorite-btn.active .favorite-icon {
+    fill: #9447ff; /* Color cuando está activo/favorito */
+}
+
+/* Estilo para el contenedor del usuario */
+.user-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Estilo para el avatar del usuario */
+.user-avatar {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    object-fit: cover;
+    margin-right: 12px;
+    border: 2px solid #f0f8ff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el nombre de usuario */
+.post-username {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 600;
+}

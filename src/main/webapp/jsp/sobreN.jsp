@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acerca de Nosotros - Meowverse</title>
-    <link rel="icon" type="image/png" href="../images/meowverseSL.png">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/meowverseSL.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -193,16 +193,16 @@
             </div>
             
             <div class="about-content">
-                <p>Bienvenido a Meowverse, la red social definitiva para los amantes de los gatos. Nuestra plataforma fue creada para conectar a due√±os de gatos, compartir momentos adorables, aprender sobre cuidado felino y construir una comunidad apasionada por estos maravillosos animales.</p>
+                <p>Bienvenido a Meowverse, la red social definitiva para los amantes de los gatos. Nuestra plataforma fue creada para conectar a dueÒos de gatos, compartir momentos adorables, aprender sobre cuidado felino y construir una comunidad apasionada por estos maravillosos animales.</p>
                 
-                <p>En Meowverse puedes crear perfiles para tus gatos, compartir fotos y videos, conectarte con otros due√±os, participar en foros de discusi√≥n, acceder a art√≠culos especializados y mucho m√°s. Todo dise√±ado pensando en el bienestar felino y la comodidad de nuestros usuarios.</p>
+                <p>En Meowverse puedes crear perfiles para tus gatos, compartir fotos y videos, conectarte con otros dueÒos, participar en foros de discusiÛn, acceder a artÌculos especializados y mucho m·s. Todo diseÒado pensando en el bienestar felino y la comodidad de nuestros usuarios.</p>
                 
                 <div class="team-section">
                     <h2>Nuestro Equipo de Desarrollo</h2>
                     <div class="team-members">
                         <div class="team-member">
                             <i class="fas fa-user"></i>
-                            <h3>Areli Sarai Hern√°ndez Franco</h3>
+                            <h3>Areli Sarai Hern·ndez Franco</h3>
                             <p>Desarrolladora Frontend</p>
                         </div>
                         <div class="team-member">
@@ -211,10 +211,10 @@
                             <p>Desarrollador Backend</p>
                         </div>
                     </div>
-                    <p style="text-align: center; margin-top: 20px;">Proyecto desarrollado para la materia de Programaci√≥n Web 1</p>
+                    <p style="text-align: center; margin-top: 20px;">Proyecto desarrollado para la materia de ProgramaciÛn Web 1</p>
                 </div>
                 
-                <p>Meowverse est√° en constante evoluci√≥n para ofrecer la mejor experiencia a nuestra comunidad gatuna. Agradecemos tus comentarios y sugerencias para seguir mejorando.</p>
+                <p>Meowverse est· en constante evoluciÛn para ofrecer la mejor experiencia a nuestra comunidad gatuna. Agradecemos tus comentarios y sugerencias para seguir mejorando.</p>
             </div>
             
             <button class="back-btn" onclick="window.history.back()">Volver</button>
