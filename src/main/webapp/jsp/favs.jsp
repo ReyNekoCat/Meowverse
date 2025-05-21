@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estiloFav.css">
 </head>
 <body>
-    <iframe src="${pageContext.request.contextPath}/jsp/navbar.jsp" width="100%" style="border:none; position:fixed; top:0; left:0; z-index:1000; height: 1000px;"></iframe>
+    <iframe src="${pageContext.request.contextPath}/jsp/navbar.jsp" width="100%" style="border:none; position:fixed; top:0; left:0; z-index:200; height: 200px;"></iframe>
 
     <h1 class="results-title">Tus favoritos...</h1>
     <div class="post-list">
@@ -78,8 +78,8 @@
         <div class="footerContainer">
             <div class="footerNav">
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/jsp/termC.jsp" target="_self">Términos y condiciones</a></li>
-                    <li><a href="${pageContext.request.contextPath}/jsp/sobreN.jsp" target="_self">Acerca de nosotros</a></li>
+                    <a href="${pageContext.request.contextPath}/jsp/termC.jsp" target="_self">Términos y condiciones</a>
+                    <a href="${pageContext.request.contextPath}/jsp/sobreN.jsp" target="_self">Acerca de nosotros</a>
                 </ul>
             </div>
         </div>

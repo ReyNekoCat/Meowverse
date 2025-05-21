@@ -60,7 +60,7 @@
 
         <button class="post-btn">Publicar nuevamente</button>
     </div>
-    <script src="Java Script/make-editP.js"></script>
+    <script src="${pageContext.request.contextPath}/js/make-editP.js"></script>
 
 </body>
 </html>

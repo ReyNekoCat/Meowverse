@@ -98,6 +98,29 @@ iframe {
     fill: var(--light-text-color);
 }
 
+.styled-btn {
+   display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+    padding: 0.5em 1.2em;
+    font-size: 1.2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: 0.6s ease;
+}
+.styled-btn:hover {
+     background-color: rgba(255, 255, 255, 0.4);
+}
+
+.styled-btn svg {
+    width: 30px;
+    fill: var(--light-text-color);
+}
+
 .post-list {
     margin-top: 15px;
     align-items: center;

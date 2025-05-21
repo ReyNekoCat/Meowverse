@@ -57,10 +57,58 @@ public class userDAO {
             }catch(SQLException ex){}
         return userList;      
     }
-    
+    //Buscamos usuario por id
     public User getUser(int id){
-        User user = new User();
-        return user;   
+        PreparedStatement ps = null;
+        User user = null;
+        try{
+            ps = conn.prepareStatement("Select * From users where ID=? AND (deleted IS NULL OR deleted=FALSE)");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                user = new User();
+                user.setUserId(rs.getInt("ID"));
+                user.setFirstN(rs.getString("first_name"));
+                user.setLastN(rs.getString("last_name"));
+                user.setEmail(rs.getString("email"));
+                user.setPFP(rs.getString("profile_image"));
+                user.setUsername(rs.getString("username"));
+                user.setPass(rs.getString("user_password"));
+                user.setBirthdate(rs.getDate("birth_date"));
+                user.setCreationDate(rs.getDate("creation_date"));
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return user;
+    }
+    //Buscamos usuario por username y password
+    public User getUser(String username, String password){
+        PreparedStatement ps=null;
+        User user = null;
+        try{
+            ps = conn.prepareStatement("Select * From users where username=? and user_password=? AND (deleted IS NULL OR deleted=FALSE)");
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                user = new User();
+                user.setUserId(rs.getInt("ID"));
+                user.setFirstN(rs.getString("first_name"));
+                user.setLastN(rs.getString("last_name"));
+                user.setEmail(rs.getString("email"));
+                user.setPFP(rs.getString("profile_image"));
+                user.setUsername(rs.getString("username"));
+                user.setPass(rs.getString("user_password"));
+                user.setBirthdate(rs.getDate("birth_date"));
+                user.setCreationDate(rs.getDate("creation_date"));
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return user;
     }
     
     //Metodo para realizar un insert, tienen que agregar todos lo atributos que solicita la tabla
@@ -92,23 +140,27 @@ public class userDAO {
             return false;
         }      
     }   
-    public void updateUser(User user){
-        PreparedStatement ps=null;
+    public boolean updateUser(User user){
+        PreparedStatement ps = null;
         try{
-            ps = conn.prepareStatement("Update users set username=(?) where ID=(?)");
-            ps.setString(1, user.getUsername());
-            ps.setInt(2, user.getUserId());
+            ps = conn.prepareStatement(
+                "UPDATE users SET first_name=?, last_name=?, email=?, profile_image=?, username=?, user_password=?, birth_date=? WHERE ID=?"
+            );
+            ps.setString(1, user.getFirstN());
+            ps.setString(2, user.getLastN());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPFP());
+            ps.setString(5, user.getUsername());
+            ps.setString(6, user.getPass());
+            ps.setDate(7, user.getBirthdate());
+            ps.setInt(8, user.getUserId());
             int update = ps.executeUpdate();
-
-            if(update!=0){
-                //Mensaje Exitoso
-            }else{
-                //Mensaje Error
-            }
+            return update != 0;
         }catch(SQLException ex){
-
+            ex.printStackTrace();
+            return false;
         }
-    }   
+    }
     public void deleteUser(int idUser){
         PreparedStatement ps=null;      
         try{
@@ -127,23 +179,23 @@ public class userDAO {
         
         }
     }    
-    public User getUser(String username,String password){
-        PreparedStatement ps=null;
-        User user = null;
-        try{
-            ps = conn.prepareStatement("Select * From users where username=(?) and user_password=(?)");
-            ps.setString(1, username);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
-
-            while(rs.next()){
-                user = new User();
-                user.setUsername(rs.getString("username"));
-                user.setPass(rs.getString("password"));
-            }
-        }catch(SQLException ex){
-
-        }
-    return user;
-    }   
+    //public User getUser(String username,String password){
+    //    PreparedStatement ps=null;
+    //    User user = null;
+    //    try{
+    //        ps = conn.prepareStatement("Select * From users where username=(?) and user_password=(?)");
+    //        ps.setString(1, username);
+    //        ps.setString(2, password);
+    //        ResultSet rs = ps.executeQuery();
+    //
+    //        while(rs.next()){
+    //            user = new User();
+    //            user.setUsername(rs.getString("username"));
+    //            user.setPass(rs.getString("password"));
+    //        }
+    //    }catch(SQLException ex){
+    //
+    //    }
+    //return user;
+    //}   
 }

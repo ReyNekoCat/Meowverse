@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -36,13 +37,17 @@ public class SvLogin extends HttpServlet {
         String password = request.getParameter("password");
         System.out.println("username: " + username);
         System.out.println("password: " + password);
-        try {        
+        try {
             connection conn =  new connection();         
             userDAO uDao = new userDAO(conn.Connect());             
             User user = uDao.getUser(username, password);
             
             if(user!=null)
             {
+                //Se guarda el usuario
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                
                 request.setAttribute("username", user);
                 request.getRequestDispatcher(password);               
                 //Metodo para redireccionar a otra vista/Servlet
@@ -50,6 +55,7 @@ public class SvLogin extends HttpServlet {
                 List userList = uDao.getAll();
                 request.setAttribute("userList",userList );
                 request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+               
             }else{       
                 request.setAttribute("MensajeLogin", "Usuario/Contraseña incorrectos");
                 request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);

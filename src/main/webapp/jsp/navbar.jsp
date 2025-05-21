@@ -131,12 +131,14 @@
             background-color: #6200b3;
         }
         
+
         .advanced-search {
             position: relative;
             display: inline-block;
             margin-left: 10px;
+            width: 50px; /* Ancho fijo de 50px */
         }
-        
+                
         .advanced-search-btn {
             background: none;
             border: none;
@@ -146,6 +148,7 @@
             padding: 10px;
             transition: color 0.3s;
             font-size: 20px;
+            height: 50px; /* Altura de 50px */
         }
         
         .advanced-search-btn:hover {
@@ -160,7 +163,9 @@
             position: absolute;
             right: 0;
             background-color: white;
-            min-width: 250px;
+            min-width: 300px;
+            max-height: 100px; /* Altura máxima antes de aparecer el scroll */
+            overflow-y: auto; /* Scroll vertical cuando sea necesario */
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 8px;
@@ -286,13 +291,42 @@
                             <label for="me">Solo mis publicaciones</label>
                         </div>
                     </div>
+                    
+                    <!-- Añadiendo más opciones para demostrar el scroll -->
+                    <div class="filter-group">
+                        <label><strong>Tipo de contenido:</strong></label>
+                        <div class="radio-option">
+                            <input type="radio" name="content_type" value="all" id="all_content" checked>
+                            <label for="all_content">Todos los tipos</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="content_type" value="images" id="images">
+                            <label for="images">Solo imágenes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="content_type" value="videos" id="videos">
+                            <label for="videos">Solo videos</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label><strong>Rango de fechas:</strong></label>
+                        <select name="date_range">
+                            <option value="">Cualquier fecha</option>
+                            <option value="today">Hoy</option>
+                            <option value="week">Esta semana</option>
+                            <option value="month">Este mes</option>
+                            <option value="year">Este año</option>
+                        </select>
+                    </div>
+                    
                     <button type="button" class="apply-btn">Aplicar filtros</button>
                 </div>
             </div>
         </div>
     </header>
 
-    <script>
+       <script>
         function toggleDropdown() {
             document.getElementById("advancedDropdown").classList.toggle("show");
         }
@@ -305,39 +339,29 @@
             if (!dropdown.contains(event.target) && !button.contains(event.target)) {
                 dropdown.classList.remove("show");
             }
-        };
-        // Función para aplicar los filtros y redirigir
-    function aplicarFiltros() {
-        // Obtener los valores seleccionados
-        const categoria = document.querySelector('select[name="category"]').value;
-        const ordenFecha = document.querySelector('input[name="date_order"]:checked').value;
-        const autor = document.querySelector('input[name="author"]:checked').value;
-        
-        // Construir la URL con los parámetros
-        const url = `${pageContext.request.contextPath}/jsp/busquedaAv.jsp?category=${encodeURIComponent(categoria)}&date_order=${encodeURIComponent(ordenFecha)}&author=${encodeURIComponent(autor)}`;
-        
-        // Redirigir a la página de búsqueda avanzada
-        window.location.href = url;
-    }
-
-    // Asignar la función al botón
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.apply-btn').addEventListener('click', aplicarFiltros);
-    });
-
-    // El resto de tus funciones permanecen igual
-    function toggleDropdown() {
-        document.getElementById("advancedDropdown").classList.toggle("show");
-    }
-    
-    window.onclick = function(event) {
-        const dropdown = document.getElementById("advancedDropdown");
-        const button = document.querySelector('.advanced-search-btn');
-        
-        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
-            dropdown.classList.remove("show");
         }
-    };
+        
+        // Función para aplicar los filtros y redirigir
+        function aplicarFiltros() {
+            // Obtener los valores seleccionados
+            const categoria = document.querySelector('select[name="category"]').value;
+            const ordenFecha = document.querySelector('input[name="date_order"]:checked').value;
+            const autor = document.querySelector('input[name="author"]:checked').value;
+            
+            // Construir la URL con los parámetros
+            const urlParams = new URLSearchParams();
+            if (categoria) urlParams.append('category', categoria);
+            urlParams.append('date_order', ordenFecha);
+            urlParams.append('author', autor);
+            
+            // Redirigir a la página de búsqueda avanzada con target _top
+            window.top.location.href = `${pageContext.request.contextPath}/jsp/busquedaAv.jsp?${urlParams.toString()}`;
+        }
+
+        // Asignar la función al botón
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.apply-btn').addEventListener('click', aplicarFiltros);
+        });
     </script>
 </body>
 </html>

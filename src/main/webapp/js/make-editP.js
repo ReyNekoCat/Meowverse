@@ -1,20 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Elementos del DOM
     const postText = document.querySelector('.post-text');
-    const postBtn = document.querySelector('.post-btn');
+    //const postBtn = document.querySelector('.post-btn');
     const photoBtn = document.querySelector('.option-btn:nth-of-type(1)');
     const emojiBtn = document.querySelector('.option-btn:nth-of-type(2)');
     const categorySelect = document.querySelector('.post-category');
     const mediaPreview = document.querySelector('.media-preview');
     const previewImage = document.getElementById('preview-image');
-    const previewVideo = document.getElementById('preview-video');
+    //const previewVideo = document.getElementById('preview-video');
     const removeMediaBtn = document.querySelector('.remove-media');
-    const postContainer = document.querySelector('.post-container');
+    //const postContainer = document.querySelector('.post-container');
     const emojiPicker = document.getElementById('emojiPicker');
-    const postTextarea = document.getElementById('postTextarea');
-    const emojiOptions = document.querySelectorAll('.emoji-option');
-    
-    
+    //const postTextarea = document.getElementById('postTextarea');
+    const emojiOptions = document.querySelectorAll('.emoji-option'); 
     // Variable para almacenar el archivo seleccionado
     let selectedFile = null;
         
@@ -24,34 +22,34 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Función para publicar
-    function publicarPost() {
-        const texto = postText.value.trim();
-        const categoria = categorySelect.value;
-        
-        if (texto === '' && !selectedFile) {
-            alert('Por favor escribe algo o sube una foto/video antes de publicar');
-            return;
-        }
-        
-        // Aquí normalmente enviarías los datos a un servidor
-        console.log('Publicación creada:', {
-            texto: texto,
-            categoria: categoria,
-            archivo: selectedFile ? selectedFile.name : 'Ninguno',
-            fecha: new Date().toLocaleString()
-        });
-
-         // Mostrar éxito y redirigir
-        if (confirm('¡Publicación creada con éxito!\n¿Deseas ir a la página de inicio?')) {
-            window.location.href = 'home.html';
-        }
-        
-        //limpiar
-        postText.value = '';
-        categorySelect.value = 'Funny';
-        resetMediaPreview();
-        autoResizeTextarea();
-    }
+    //function publicarPost() {
+    //    const texto = postText.value.trim();
+    //    const categoria = categorySelect.value;
+    //    
+    //    if (texto === '' && !selectedFile) {
+    //        alert('Por favor escribe algo o sube una foto/video antes de publicar');
+    //        return;
+    //    }
+    //    
+    //    // Aquí normalmente enviarías los datos a un servidor
+    //    console.log('Publicación creada:', {
+    //        texto: texto,
+    //        categoria: categoria,
+    //       archivo: selectedFile ? selectedFile.name : 'Ninguno',
+    //        fecha: new Date().toLocaleString()
+    //    });
+    //
+    //     // Mostrar éxito y redirigir
+    //    if (confirm('¡Publicación creada con éxito!\n¿Deseas ir a la página de inicio?')) {
+    //        window.location.href = 'home.html';
+    //    }
+    //    
+    //    //limpiar
+    //    postText.value = '';
+    //    categorySelect.value = 'Funny';
+    //    resetMediaPreview();
+    //    autoResizeTextarea();
+    //}
     
     // Función para resetear la previsualización
     function resetMediaPreview() {
@@ -135,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    postBtn.addEventListener('click', publicarPost);
+    //postBtn.addEventListener('click', publicarPost);
     photoBtn.addEventListener('click', añadirMedia);
     removeMediaBtn.addEventListener('click', resetMediaPreview);
     postText.addEventListener('input', autoResizeTextarea);

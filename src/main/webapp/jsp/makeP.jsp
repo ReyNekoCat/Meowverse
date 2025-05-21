@@ -1,3 +1,12 @@
+<%@ page import="models.User" %>
+<%@ page session="true" %>
+<%
+    User user = (User) session.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect(request.getContextPath() + "/jsp/index.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,10 +18,11 @@
 </head>
 <body>
     <div class="post-container">
+        <form action="${pageContext.request.contextPath}/SvPostCreate" method="post" enctype="multipart/form-data">
         <div class="post-header">
             <img src="${pageContext.request.contextPath}/images/avatar2.png" alt="Usuario" class="profile-pic">
             <div>
-                <p class="user-name">Nombre</p>
+                <p class="user-name"><%= user.getUsername()%></p>
                 <select class="post-category">
                     <option value="Funny"> funny</option>
                     <option value="Sad"> sad </option>
@@ -20,8 +30,11 @@
                 </select>
             </div>
         </div>
-
+        <input type="text" name="title" placeholder="Título del post" required>
         <textarea placeholder="¿Qué estás pensando?" class="post-text"></textarea>
+        <input type="file" name="image" accept="image/*">
+        <button class="post-btn">Publicar</button>
+        </form>
         
         <!-- Área de previsualización de medios -->
         <div class="media-preview">
@@ -55,9 +68,8 @@
                     <div class="emoji-option" title="Gato ninja">???</div>
                 </div>
             </div>
-        </div>
-        <button class="post-btn">Publicar</button>
+        </div>  
     </div>
-    <script src="${pageContext.request.contextPath}/js/make-editP.js"></script>
+    <!--script src="${pageContext.request.contextPath}/js/make-editP.js"></script-->
 </body>
 </html>
