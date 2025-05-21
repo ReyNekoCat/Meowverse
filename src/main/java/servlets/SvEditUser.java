@@ -8,12 +8,14 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.annotation.MultipartConfig; // For annotation
+import jakarta.servlet.http.Part; // For handling file parts (uploaded files)
+import java.io.File; // For file operations
 
 @WebServlet(name = "SvEditUser", urlPatterns = {"/SvEditUser"})
 @MultipartConfig
@@ -45,14 +47,13 @@ public class SvEditUser extends HttpServlet {
         }
         User currentUser = (User) session.getAttribute("user");
 
-        // Get new data from form
+        // Get form fields
         String firstName = request.getParameter("first_name");
         String lastName = request.getParameter("last_name");
         String email = request.getParameter("email");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String birthStr = request.getParameter("birth_date");
-        String profileImage = request.getParameter("profile_image"); // If you handle image upload, use Part instead
 
         java.sql.Date birthDate = null;
         if (birthStr != null && !birthStr.isEmpty()) {
@@ -60,11 +61,29 @@ public class SvEditUser extends HttpServlet {
                 java.util.Date parsed = new SimpleDateFormat("yyyy-MM-dd").parse(birthStr);
                 birthDate = new java.sql.Date(parsed.getTime());
             } catch (Exception e) {
-                // Invalid date, ignore or handle
+                // Handle parse error
             }
         }
 
-        // Update user model
+        // Handle file upload
+        Part filePart = request.getPart("profile-img");
+        String profileImgPath = currentUser.getPFP(); // Keep current by default
+        if (filePart != null && filePart.getSize() > 0) {
+            String submittedFileName = filePart.getSubmittedFileName();
+            String ext = submittedFileName.substring(submittedFileName.lastIndexOf('.')); // e.g. .jpg
+            // Unique name: username_timestamp.extension
+            String fileName = username + "_" + System.currentTimeMillis() + ext;
+
+            String imagesDir = getServletContext().getRealPath("/images/users/");
+            File dir = new File(imagesDir);
+            if (!dir.exists()) dir.mkdirs();
+            // Save the file
+            filePart.write(imagesDir + fileName);
+
+            profileImgPath = "images/users/" + fileName; // Relative path to use in <img>
+        }
+
+        // Prepare updated user
         User updatedUser = new User();
         updatedUser.setUserId(currentUser.getUserId());
         updatedUser.setFirstN(firstName);
@@ -73,14 +92,9 @@ public class SvEditUser extends HttpServlet {
         updatedUser.setUsername(username);
         updatedUser.setPass(password);
         updatedUser.setBirthdate(birthDate);
-
-        // Handle profile image (for now, just use string, for file upload see below)
-        updatedUser.setPFP(profileImage);
-
-        // Keep creation date & other fields
+        updatedUser.setPFP(profileImgPath);
         updatedUser.setCreationDate(currentUser.getCreationDate());
 
-        // Update DB
         boolean success = false;
         try {
             connection conn = new connection();
@@ -91,15 +105,12 @@ public class SvEditUser extends HttpServlet {
             ex.printStackTrace();
         }
 
-        // Update session user if success
         if (success) {
             session.setAttribute("user", updatedUser);
             request.setAttribute("MensajeEdicion", "¡Usuario actualizado correctamente!");
         } else {
             request.setAttribute("MensajeEdicion", "Error al actualizar usuario.");
         }
-
-        // Forward back to edit page (or profile/home)
         request.setAttribute("user", updatedUser);
         request.getRequestDispatcher("/jsp/perfil.jsp").forward(request, response);
     }

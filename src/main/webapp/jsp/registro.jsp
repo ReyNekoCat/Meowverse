@@ -9,6 +9,29 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estiloR.css">
 </head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.querySelector('input[name="profile-img"]');
+    const previewImg = document.getElementById('preview-img');
+
+    // When the image is clicked, trigger the file input
+    previewImg.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    // When a file is chosen, preview it
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+});
+</script>
 <body>
     <div class="container"> 
         <div class="design">
@@ -21,7 +44,7 @@
         <div class="registro">
             <h3 class="title">¡Regí­strate!</h3>
             
-            <form action="../SvReg" method="post">
+            <form action="../SvReg" method="post" enctype="multipart/form-data">
             <!-- Imagen -->
             <div class="profile-picture">
                 <label for="profile-img" class="custom-file-upload">

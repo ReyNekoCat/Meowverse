@@ -331,6 +331,29 @@ a.forgot {
     background-color: #45a049;
 }
 
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+#preview-img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #89379c;
+    cursor: pointer;
+    transition: border 0.2s;
+}
+
+#preview-img:hover {
+    border: 3px solid #c34eda;
+}
+
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
     .error-message .tooltip-text {

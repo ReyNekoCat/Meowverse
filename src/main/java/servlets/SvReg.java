@@ -21,8 +21,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jakarta.servlet.annotation.MultipartConfig; // For annotation
+import jakarta.servlet.http.Part; // For handling file parts (uploaded files)
 
 @WebServlet(name = "SvReg", urlPatterns = {"/SvReg"})
+@MultipartConfig
 public class SvReg extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -49,6 +52,19 @@ public class SvReg extends HttpServlet {
         //Part filePart = request.getPart("profile-img");
         //final String fileName = username+".jpg";          
         //filePart.write("C:\\Users\\Rey\\Documents\\NetBeansProjects\\meowverse\\src\\main\\webapp\\images"+fileName);
+        
+        //Handle the image
+        Part filePart = request.getPart("profile-img");
+        String fileName = null;
+        if (filePart != null && filePart.getSize() > 0) {
+            String submittedFileName = filePart.getSubmittedFileName();
+            String extension = submittedFileName.substring(submittedFileName.lastIndexOf('.'));
+            fileName = username + "_" + System.currentTimeMillis() + extension;
+            String imagesDir = getServletContext().getRealPath("/images/users/");
+            java.io.File dir = new java.io.File(imagesDir);
+            if (!dir.exists()) dir.mkdirs();
+            filePart.write(imagesDir + fileName);
+        }
         
         //Convertir string a fecha
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -79,6 +95,11 @@ public class SvReg extends HttpServlet {
             user.setBirthdate(BirthdateSQL);
             user.setUsername(username);
             user.setPass(password);
+            if (fileName != null) {
+            user.setPFP("images/users/" + fileName); // relative path to use in JSP
+            } else {
+                user.setPFP(null);
+            }
                     
             //Se declara el objeto de la conexion
             connection conn =  new connection();

@@ -31,7 +31,10 @@
         <div class="perfil-usuario-header">
             <div class="perfil-usuario-portada">
                 <div class="perfil-usuario-avatar">
-                    <img src="${pageContext.request.contextPath}/images/avatar2.png" alt="Usuario" class="profile-pic" id="avatar-usuario">
+                   <img src="<%= (user.getPFP() != null && !user.getPFP().isEmpty()) 
+                    ? (request.getContextPath() + "/" + user.getPFP()) 
+                    : (request.getContextPath() + "/images/avatar2.png") %>" 
+                    alt="Usuario" class="profile-pic" id="avatar-usuario">
                 </div>
             </div>
         </div>
@@ -62,7 +65,11 @@
         <div class="contenido-modal">
             <h2>Editar Perfil</h2>
             <form class="formulario-editar" id="formulario-editar"
-                  action="${pageContext.request.contextPath}/SvEditUser" method="post">
+                  action="${pageContext.request.contextPath}/SvEditUser" method="post" enctype="multipart/form-data">
+                
+                <label for="edit-profile-img">Foto de perfil:</label>
+                <input type="file" id="edit-profile-img" name="profile-img" accept="image/*">
+                
                 <label for="edit-nombre">Nombre:</label>
                 <input type="text" id="edit-nombre" name="first_name" required value="<%= user.getFirstN() %>">
 

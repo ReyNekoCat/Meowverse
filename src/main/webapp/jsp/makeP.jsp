@@ -20,7 +20,10 @@
     <div class="post-container">
         <form action="${pageContext.request.contextPath}/SvPostCreate" method="post" enctype="multipart/form-data">
         <div class="post-header">
-            <img src="${pageContext.request.contextPath}/images/avatar2.png" alt="Usuario" class="profile-pic">
+            <img src="<%= (user.getPFP() != null && !user.getPFP().isEmpty()) 
+                ? (request.getContextPath() + "/" + user.getPFP()) 
+                : (request.getContextPath() + "/images/avatar2.png") %>" 
+                alt="Usuario" class="profile-pic" id="avatar-usuario">
             <div>
                 <p class="user-name"><%= user.getUsername()%></p>
                 <select class="post-category">

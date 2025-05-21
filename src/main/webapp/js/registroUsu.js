@@ -227,38 +227,38 @@ document.addEventListener('DOMContentLoaded', function() {
         const isConfirmPasswordValid = validateConfirmPassword();
         
         // Si todas las validaciones son correctas
-        if (isUsernameValid && isFirstNameValid && isLastNameValid && 
-            isBirthdateValid && isEmailValid && isPasswordValid && 
-            isConfirmPasswordValid) {
+        //if (isUsernameValid && isFirstNameValid && isLastNameValid && 
+        //    isBirthdateValid && isEmailValid && isPasswordValid && 
+        //    isConfirmPasswordValid) {
             
             // Crear objeto con los datos del usuario
-            const userData = {
-                username: document.getElementById('username').value.trim(),
-                firstName: document.getElementById('first-name').value.trim(),
-                lastName: document.getElementById('last-name').value.trim(),
-                birthdate: document.getElementById('birthdate').value,
-                email: document.getElementById('email').value.trim(),
-                password: document.getElementById('password').value,
-            };
+            //const userData = {
+            //    username: document.getElementById('username').value.trim(),
+            //    firstName: document.getElementById('first-name').value.trim(),
+            //    lastName: document.getElementById('last-name').value.trim(),
+            //    birthdate: document.getElementById('birthdate').value,
+            //    email: document.getElementById('email').value.trim(),
+            //    password: document.getElementById('password').value,
+            //};
             
             // Mostrar modal de éxito
-            const successModal = document.getElementById('success-modal');
-            successModal.style.display = 'flex';
+            //const successModal = document.getElementById('success-modal');
+            //successModal.style.display = 'flex';
             
             // Cerrar modal al hacer clic en el botón
-            document.getElementById('modal-close-btn').addEventListener('click', function() {
-                successModal.style.display = 'none';
-                // Opcional: redirigir al usuario a la página de inicio de sesión
-                window.location.href = 'index.html';
-            });
+            //document.getElementById('modal-close-btn').addEventListener('click', function() {
+            //    successModal.style.display = 'none';
+            //    // Opcional: redirigir al usuario a la página de inicio de sesión
+            //    window.location.href = 'index.html';
+            //});
             
             // También puedes cerrar el modal haciendo clic fuera del contenido
-            successModal.addEventListener('click', function(e) {
-                if (e.target === successModal) {
-                    successModal.style.display = 'none';
-                    window.location.href = 'index.html';
-                }
-            });
-        }
+            //successModal.addEventListener('click', function(e) {
+            //    if (e.target === successModal) {
+            //        successModal.style.display = 'none';
+            //        window.location.href = 'index.html';
+            //    }
+            //});
+        //}
     });
 });
