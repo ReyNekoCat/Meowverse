@@ -31,7 +31,7 @@ public class postDAO {
                 post.setDescription(rs.getString("description"));
                 post.setCreationDate(rs.getDate("creation_date"));
                 post.setDeleted(rs.getBoolean("deleted"));
-                post.setDescription(rs.getString("image"));
+                post.setImage(rs.getString("image"));
                 posts.add(post);
             }
         } catch (SQLException e) {
@@ -39,6 +39,29 @@ public class postDAO {
         }
         return posts;
     }
+    //Get all posts of a User
+    public List<Post> getPostsByUser(int userId) {
+    List<Post> posts = new ArrayList<>();
+    String sql = "SELECT * FROM posts WHERE deleted = FALSE AND user_ID = ? ORDER BY creation_date DESC";
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, userId);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Post post = new Post();
+            post.setId(rs.getInt("ID"));
+            post.setUserId(rs.getInt("user_ID"));
+            post.setTitle(rs.getString("title"));
+            post.setDescription(rs.getString("description"));
+            post.setImage(rs.getString("image"));
+            post.setCreationDate(rs.getDate("creation_date"));
+            post.setDeleted(rs.getBoolean("deleted"));
+            posts.add(post);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return posts;
+}
 
     // Get a single post by ID
     public Post getPost(int id) {
@@ -54,7 +77,7 @@ public class postDAO {
                 post.setDescription(rs.getString("description"));
                 post.setCreationDate(rs.getDate("creation_date"));
                 post.setDeleted(rs.getBoolean("deleted"));
-                post.setDescription(rs.getString("image"));
+                post.setImage(rs.getString("image"));
                 return post;
             }
         } catch (SQLException e) {
@@ -84,7 +107,7 @@ public class postDAO {
         String sql = "UPDATE posts SET title = ?, image = ?, description = ? WHERE ID = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, post.getTitle());
-             ps.setString(2, post.getImage());
+            ps.setString(2, post.getImage());
             ps.setString(3, post.getDescription());
             ps.setInt(4, post.getId());
             int result = ps.executeUpdate();

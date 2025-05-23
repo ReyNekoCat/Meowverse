@@ -240,10 +240,10 @@
             Meowverse
         </a>
         <nav class="navbar">
-            <a href="${pageContext.request.contextPath}/jsp/home.jsp" target="_top">Home</a>
+            <a href="../SvPostList" target="_top">Home</a>
             <a href="${pageContext.request.contextPath}/jsp/perfil.jsp" target="_top">Perfil</a>
             <a href="${pageContext.request.contextPath}/jsp/favs.jsp" target="_top">Favoritos</a>
-            <a href="${pageContext.request.contextPath}/jsp/misPubli.jsp" target="_top">Mis publicaciones</a>
+            <a href="../SvMyPosts" target="_top">Mis publicaciones</a>
         </nav>
         <div class="search-container">
             <form class="search-form" action="${pageContext.request.contextPath}/jsp/busquedaAv.jsp" method="GET" target="_top">

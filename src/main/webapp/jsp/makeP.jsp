@@ -34,7 +34,7 @@
             </div>
         </div>
         <input type="text" name="title" placeholder="Título del post" required>
-        <textarea placeholder="¿Qué estás pensando?" class="post-text"></textarea>
+        <textarea name="description" placeholder="¿Qué estás pensando?" class="post-text"></textarea>
         <input type="file" name="image" accept="image/*">
         <button class="post-btn">Publicar</button>
         </form>

@@ -26,7 +26,7 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 previewImg.src = e.target.result;
-            }
+            };
             reader.readAsDataURL(file);
         }
     });

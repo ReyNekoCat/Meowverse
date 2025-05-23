@@ -54,8 +54,8 @@ public class SvLogin extends HttpServlet {
                 request.setAttribute("MensajeHome", "Bienvenido "+user.getUsername());
                 List userList = uDao.getAll();
                 request.setAttribute("userList",userList );
-                request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
-               
+                //request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+               response.sendRedirect(request.getContextPath() + "/SvPostList");
             }else{       
                 request.setAttribute("MensajeLogin", "Usuario/Contraseña incorrectos");
                 request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);

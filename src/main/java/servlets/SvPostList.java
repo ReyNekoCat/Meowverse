@@ -23,7 +23,7 @@ public class SvPostList extends HttpServlet {
             postDAO pDao = new postDAO(conn.Connect());
             List<Post> posts = pDao.getAll();
             request.setAttribute("posts", posts);
-            request.getRequestDispatcher("/jsp/posts.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
             conn.Disconnect();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
