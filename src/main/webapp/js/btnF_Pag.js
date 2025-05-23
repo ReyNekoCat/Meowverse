@@ -99,33 +99,53 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Función para manejar el estado de favoritos
-document.addEventListener('DOMContentLoaded', function() {
-    // Seleccionar todos los botones de favoritos
-    const favoriteButtons = document.querySelectorAll('.favorite-btn');
-    
-    // Cargar estado de favoritos desde localStorage
-    let favorites = JSON.parse(localStorage.getItem('postFavorites')) || {};
-    
-    // Aplicar estado guardado a los botones
-    favoriteButtons.forEach((button, index) => {
-        const postId = `post-${index}`; // Crear un ID único para cada post
-        button.setAttribute('data-post-id', postId);
-        
-        // Verificar si este post está en favoritos
-        if (favorites[postId]) {
-            button.classList.add('active');
-        }
-        
-        // Añadir event listener para clicks
-        button.addEventListener('click', function() {
-            this.classList.toggle('active');
-            
-            // Actualizar el objeto de favoritos
-            const isFavorite = this.classList.contains('active');
-            favorites[postId] = isFavorite;
-            
-            // Guardar en localStorage
-            localStorage.setItem('postFavorites', JSON.stringify(favorites));
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const postId = this.getAttribute('data-postid');
+        fetch('${pageContext.request.contextPath}/SvToggleLike', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: 'postId=' + postId
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if (data.liked) {
+                this.querySelector('.favorite-icon').classList.add('liked');
+            } else {
+                this.querySelector('.favorite-icon').classList.remove('liked');
+            }
         });
     });
 });
+
+//document.addEventListener('DOMContentLoaded', function() {
+//    // Seleccionar todos los botones de favoritos
+//    const favoriteButtons = document.querySelectorAll('.favorite-btn');
+//    
+//    // Cargar estado de favoritos desde localStorage
+//    let favorites = JSON.parse(localStorage.getItem('postFavorites')) || {};
+//    
+//    // Aplicar estado guardado a los botones
+//    favoriteButtons.forEach((button, index) => {
+//       const postId = `post-${index}`; // Crear un ID único para cada post
+//        button.setAttribute('data-post-id', postId);
+//        
+//        // Verificar si este post está en favoritos
+//        if (favorites[postId]) {
+//            button.classList.add('active');
+//        }
+//        
+//        // Añadir event listener para clicks
+//        button.addEventListener('click', function() {
+//            this.classList.toggle('active');
+//            
+//            // Actualizar el objeto de favoritos
+//            const isFavorite = this.classList.contains('active');
+//            favorites[postId] = isFavorite;
+//            
+//            // Guardar en localStorage
+//            localStorage.setItem('postFavorites', JSON.stringify(favorites));
+//        });
+//    });
+//});

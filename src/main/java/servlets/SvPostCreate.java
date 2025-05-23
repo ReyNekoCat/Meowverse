@@ -27,6 +27,7 @@ public class SvPostCreate extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String title = request.getParameter("title");
+        String category = request.getParameter("category");
         String description = request.getParameter("description");
 
         // Handle file upload
@@ -56,6 +57,7 @@ public class SvPostCreate extends HttpServlet {
             Post post = new Post();
             post.setUserId(userId);
             post.setTitle(title);
+            post.setCategory(category);
             post.setImage(imageFileName != null ? "images/posts/" + imageFileName : null);
             post.setDescription(description);
 

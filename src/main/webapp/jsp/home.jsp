@@ -3,6 +3,9 @@
 <%@ page import="dao.userDAO" %>
 <%@ page import="models.User" %>
 <%@ page import="classes.connection" %>
+<%
+    List<Integer> favoritePostIds = (List<Integer>) request.getAttribute("favoritePostIds");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +21,6 @@
         <h1 class="welcome-message">¡Bienvenido a Meowverse!</h1>
         <div class="add-new-post" id="post-background">
             <button id="add-new-btn" onclick="window.location.href='${pageContext.request.contextPath}/jsp/makeP.jsp'">
-                <!-- Your SVG here -->
                 CREAR POST
             </button>
         </div> 
@@ -27,38 +29,38 @@
             <%
                 List<Post> posts = (List<Post>) request.getAttribute("posts");
                 if (posts != null && !posts.isEmpty()) {
-                    // Only create DAO connection once for efficiency
                     userDAO uDao = new userDAO(new connection().Connect());
                     for (Post post : posts) {
                         User postUser = uDao.getUser(post.getUserId());
-                        %>
-                        <div class="post">
-                            <span class="user-container">
-                                <img src="<%= request.getContextPath() + "/" + (postUser != null && postUser.getPFP() != null && !postUser.getPFP().isEmpty() ? postUser.getPFP() : "images/avatar2.png") %>" alt="User Avatar" class="user-avatar">
-                                <h2 class="post-username"><%= postUser != null ? postUser.getUsername() : "Usuario desconocido" %></h2>
-                            </span>
-                            <% if (post.getImage() != null && !post.getImage().isEmpty()) { %>
-                                <img src="<%= request.getContextPath() + "/" + post.getImage() %>" alt="Imagen post">
-                            <% } %>
-                            <div>
-                                <!-- You can add category here if you implement it -->
-                                <span class="post-date"><%= post.getCreationDate() != null ? post.getCreationDate() : "" %></span>
-                            </div>
-                            <p class="post-content">
-                                <%= post.getDescription() %>
-                            </p>
-                            <button class="favorite-btn">
-                                <!-- SVG or icon here -->
-                            </button>
-                        </div>
-                        <%
+                        boolean liked = favoritePostIds != null && favoritePostIds.contains(post.getId());
+            %>
+            <div class="post">
+                <span class="user-container">
+                    <img src="<%= request.getContextPath() + "/" + (postUser != null && postUser.getPFP() != null && !postUser.getPFP().isEmpty() ? postUser.getPFP() : "images/avatar2.png") %>" alt="User Avatar" class="user-avatar">
+                    <h2 class="post-username"><%= postUser != null ? postUser.getUsername() : "Usuario desconocido" %></h2>
+                </span>
+                <% if (post.getImage() != null && !post.getImage().isEmpty()) { %>
+                    <img src="<%= request.getContextPath() + "/" + post.getImage() %>" alt="Imagen post">
+                <% } %>
+                <div>
+                    <span class="post-category"><%= post.getCategory() != null ? post.getCategory() : "" %></span>
+                    <span class="post-date"><%= post.getCreationDate() != null ? post.getCreationDate() : "" %></span>
+                </div>
+                <p class="post-content">
+                    <%= post.getDescription() %>
+                </p>
+                <button class="favorite-btn" data-postid="<%= post.getId() %>">
+                    <svg class="favorite-icon <%= liked ? "liked" : "" %>" viewBox="0 0 24 24" width="30" height="30">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </button>
+            </div>
+            <%
                     }
-                    // Close connection if needed (optional: depends on your connection pooling)
                 } else {
             %>
                 <p>No hay posts para mostrar.</p>
             <% } %>
-            <!-- Pagination container (if needed) -->
             <div class="pagination" id="pagination-container"></div>
         </div>
     </div>
@@ -76,8 +78,6 @@
             <p>Copyright &copy;2025; Designed by <span class="designer">Areli Hernández y Rey Aguirre</span></p>
         </div>
     </footer>
-
     <script src="${pageContext.request.contextPath}/js/btnF_Pag.js"></script> 
-
 </body>
 </html>

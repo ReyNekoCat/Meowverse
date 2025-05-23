@@ -242,7 +242,7 @@
         <nav class="navbar">
             <a href="../SvPostList" target="_top">Home</a>
             <a href="${pageContext.request.contextPath}/jsp/perfil.jsp" target="_top">Perfil</a>
-            <a href="${pageContext.request.contextPath}/jsp/favs.jsp" target="_top">Favoritos</a>
+            <a href="../SvFavs" target="_top">Favoritos</a>
             <a href="../SvMyPosts" target="_top">Mis publicaciones</a>
         </nav>
         <div class="search-container">

@@ -26,11 +26,11 @@
                 <img src="${pageContext.request.contextPath}/<%= user.getPFP() != null && !user.getPFP().isEmpty() ? user.getPFP() : "images/avatar2.png" %>" alt="Usuario" class="profile-pic">
                 <div>
                     <p class="user-name"><%= user.getUsername() %></p>
-                    <!-- If you add categories, handle them here -->
-                    <%-- <select class="post-category" name="category">
-                        <option value="Funny" <%= (post.getCategory()!=null && post.getCategory().equals("Funny")) ? "selected" : "" %>> funny</option>
-                        ...
-                    </select> --%>
+                    <select class="post-category" name="category" required>
+                        <option value="Funny" <%= "Funny".equals(post.getCategory()) ? "selected" : "" %>>funny</option>
+                        <option value="Sad" <%= "Sad".equals(post.getCategory()) ? "selected" : "" %>>sad</option>
+                        <option value="Happy" <%= "Happy".equals(post.getCategory()) ? "selected" : "" %>>happy</option>
+                    </select>
                 </div>
             </div>
             <input type="text" name="title" placeholder="Título del post" value="<%= post.getTitle() %>" required>

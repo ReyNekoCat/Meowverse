@@ -48,6 +48,7 @@ public class SvEditPost extends HttpServlet {
         }
         int postId = Integer.parseInt(request.getParameter("id"));
         String title = request.getParameter("title");
+        String category = request.getParameter("category");
         String description = request.getParameter("description");
         String oldImagePath = request.getParameter("image");
         
@@ -74,6 +75,7 @@ public class SvEditPost extends HttpServlet {
             postDAO pDao = new postDAO(conn.Connect());
             Post post = pDao.getPost(postId);
             post.setTitle(title);
+            post.setCategory(category);
             post.setDescription(description);
             post.setImage(imageFileName);
             boolean updated = pDao.updatePost(post);

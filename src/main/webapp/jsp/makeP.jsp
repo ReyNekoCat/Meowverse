@@ -26,10 +26,10 @@
                 alt="Usuario" class="profile-pic" id="avatar-usuario">
             <div>
                 <p class="user-name"><%= user.getUsername()%></p>
-                <select class="post-category">
-                    <option value="Funny"> funny</option>
-                    <option value="Sad"> sad </option>
-                    <option value="Happy"> happy</option>
+                <select class="post-category" name="category" required>
+                    <option value="Funny">funny</option>
+                    <option value="Sad">sad</option>
+                    <option value="Happy">happy</option>
                 </select>
             </div>
         </div>

@@ -9,6 +9,7 @@ public class Post {
     private int id;
     private int userId;
     private String title;
+    private String category;
     private String image;
     private String description;
     private Date creationDate;
@@ -16,10 +17,11 @@ public class Post {
 
     public Post() {}
 
-    public Post(int id, int userId, String title, String image, String description, Date creationDate, boolean deleted) {
+    public Post(int id, int userId, String title, String category, String image, String description, Date creationDate, boolean deleted) {
         this.id = id;
         this.userId = userId;
         this.title = title;
+        this.category = category;
         this.image = image;
         this.description = description;
         this.creationDate = creationDate;
@@ -35,6 +37,9 @@ public class Post {
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
     public String getImage() { return image; }
     public void setImage(String image) { this.image = image; }
 

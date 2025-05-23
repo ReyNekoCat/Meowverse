@@ -32,6 +32,7 @@ public class postDAO {
                 post.setCreationDate(rs.getDate("creation_date"));
                 post.setDeleted(rs.getBoolean("deleted"));
                 post.setImage(rs.getString("image"));
+                post.setCategory(rs.getString("category"));
                 posts.add(post);
             }
         } catch (SQLException e) {
@@ -52,9 +53,10 @@ public class postDAO {
             post.setUserId(rs.getInt("user_ID"));
             post.setTitle(rs.getString("title"));
             post.setDescription(rs.getString("description"));
-            post.setImage(rs.getString("image"));
             post.setCreationDate(rs.getDate("creation_date"));
             post.setDeleted(rs.getBoolean("deleted"));
+            post.setImage(rs.getString("image"));
+            post.setCategory(rs.getString("category"));
             posts.add(post);
         }
     } catch (SQLException e) {
@@ -78,6 +80,7 @@ public class postDAO {
                 post.setCreationDate(rs.getDate("creation_date"));
                 post.setDeleted(rs.getBoolean("deleted"));
                 post.setImage(rs.getString("image"));
+                post.setCategory(rs.getString("category"));
                 return post;
             }
         } catch (SQLException e) {
@@ -88,12 +91,13 @@ public class postDAO {
 
     // Insert new post
     public boolean insertPost(Post post) {
-        String sql = "INSERT INTO posts (user_ID, title, image, description) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO posts (user_ID, title, image, description, category) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, post.getUserId());
             ps.setString(2, post.getTitle());
             ps.setString(3, post.getImage());
             ps.setString(4, post.getDescription());
+            ps.setString(5, post.getCategory());
             int result = ps.executeUpdate();
             return result != 0;
         } catch (SQLException e) {
@@ -104,12 +108,13 @@ public class postDAO {
 
     // Update existing post
     public boolean updatePost(Post post) {
-        String sql = "UPDATE posts SET title = ?, image = ?, description = ? WHERE ID = ?";
+        String sql = "UPDATE posts SET title = ?, image = ?, description = ?, category = ? WHERE ID = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, post.getTitle());
             ps.setString(2, post.getImage());
             ps.setString(3, post.getDescription());
-            ps.setInt(4, post.getId());
+            ps.setString(4, post.getCategory());
+            ps.setInt(5, post.getId());
             int result = ps.executeUpdate();
             return result != 0;
         } catch (SQLException e) {
