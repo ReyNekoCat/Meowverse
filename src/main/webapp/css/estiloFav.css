@@ -246,6 +246,8 @@ body {
     fill: #9447ff; /* Color cuando está activo/favorito */
 }
 
+.favorite-icon.liked { fill: #9447ff; }
+
 .edit-btn {
 background: none;
     border: none;

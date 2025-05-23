@@ -14,6 +14,7 @@
     <title>Meowverse</title>
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/meowverseSL.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estiloH.css">
+
 </head>
 <body>
     <iframe src="${pageContext.request.contextPath}/jsp/navbar.jsp" width="100%" style="border:none; position:fixed; top:0; left:0; z-index:200; height: 200px;"></iframe>
@@ -78,6 +79,28 @@
             <p>Copyright &copy;2025; Designed by <span class="designer">Areli Hernández y Rey Aguirre</span></p>
         </div>
     </footer>
+
     <script src="${pageContext.request.contextPath}/js/btnF_Pag.js"></script> 
+    <script>
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const postId = this.getAttribute('data-postid');
+            fetch('${pageContext.request.contextPath}/SvToggleLike', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: 'postId=' + postId
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.liked) {
+                    this.querySelector('.favorite-icon').classList.add('liked');
+                } else {
+                    this.querySelector('.favorite-icon').classList.remove('liked');
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>

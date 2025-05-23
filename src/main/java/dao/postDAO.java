@@ -122,6 +122,57 @@ public class postDAO {
             return false;
         }
     }
+    
+    public List<Post> searchPosts(String search, String category, String dateOrder, String author, int userId, String contentType, String dateRange) {
+        List<Post> posts = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT * FROM posts WHERE deleted = FALSE");
+        List<Object> params = new ArrayList<>();
+        if (search != null && !search.isEmpty()) {
+            sql.append(" AND (title LIKE ? OR description LIKE ?)");
+            params.add("%" + search + "%");
+            params.add("%" + search + "%");
+        }
+        if (category != null && !category.isEmpty()) {
+            sql.append(" AND category = ?");
+            params.add(category);
+        }
+        if ("me".equals(author) && userId > 0) {
+            sql.append(" AND user_ID = ?");
+            params.add(userId);
+        }
+        if ("images".equals(contentType)) {
+            sql.append(" AND image IS NOT NULL AND image <> ''");
+        }
+        // TODO: Add dateRange filter if needed
+        if ("newest".equals(dateOrder)) {
+            sql.append(" ORDER BY creation_date DESC");
+        } else if ("oldest".equals(dateOrder)) {
+            sql.append(" ORDER BY creation_date ASC");
+        } else {
+            sql.append(" ORDER BY creation_date DESC");
+        }
+        try (PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+            for (int i = 0; i < params.size(); i++) {
+                ps.setObject(i + 1, params.get(i));
+            }
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt("ID"));
+                post.setUserId(rs.getInt("user_ID"));
+                post.setTitle(rs.getString("title"));
+                post.setImage(rs.getString("image"));
+                post.setDescription(rs.getString("description"));
+                post.setCreationDate(rs.getDate("creation_date"));
+                post.setDeleted(rs.getBoolean("deleted"));
+                post.setCategory(rs.getString("category"));
+                posts.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return posts;
+    }
 
     // Soft-delete a post
     public boolean deletePost(int id) {

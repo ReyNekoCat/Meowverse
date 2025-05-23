@@ -66,6 +66,29 @@
             <p>Copyright &copy;2025; Designed by <span class="designer">Areli Hernández y Rey Aguirre</span></p>
         </div>
     </footer> 
+    <script>
+    //document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const postId = this.getAttribute('data-postid');
+            fetch('${pageContext.request.contextPath}/SvToggleLike', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: 'postId=' + postId
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.liked) {
+                    this.querySelector('.favorite-icon').classList.add('liked');
+                } else {
+                    this.querySelector('.favorite-icon').classList.remove('liked');
+                    // Optionally: Remove post from DOM when unfavorited
+                    this.closest('.post').remove();
+                }
+            });
+        });
+    });
+    </script>
     <script src="${pageContext.request.contextPath}/js/btnF_Pag.js"></script> 
 </body>
 </html>

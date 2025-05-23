@@ -283,9 +283,7 @@ iframe {
     fill: #9447ff;
 }
 
-.favorite-btn.active .favorite-icon {
-    fill: #9447ff; /* Color cuando está activo/favorito */
-}
+.favorite-icon.liked { fill: #9447ff; }
 
 /* Estilos del footer */
 footer {

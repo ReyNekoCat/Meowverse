@@ -233,7 +233,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="${pageContext.request.contextPath}/jsp/home.jsp" class="logo">
+        <a href="../SvPostList" class="logo">
             <!-- Logo optimizado con atributos para carga rápida -->
             <img src="${pageContext.request.contextPath}/images/meowverseB.png" alt="Meowverse Logo" class="logo-img" 
                  width="50" height="50" loading="eager" decoding="sync">
@@ -246,19 +246,26 @@
             <a href="../SvMyPosts" target="_top">Mis publicaciones</a>
         </nav>
         <div class="search-container">
-            <form class="search-form" action="${pageContext.request.contextPath}/jsp/busquedaAv.jsp" method="GET" target="_top">
+            <form class="search-form" id="mainSearchForm" action="${pageContext.request.contextPath}/SvBusquedaAv" method="GET" target="_top">
                 <input type="text" placeholder="Buscar..." name="search">
                 <button type="submit"><i class="fa fa-search"></i></button>
+
+                <!-- Hidden advanced fields that will be filled by JS if advanced search is used -->
+                <input type="hidden" name="category">
+                <input type="hidden" name="date_order">
+                <input type="hidden" name="author">
+                <input type="hidden" name="content_type">
+                <input type="hidden" name="date_range">
             </form>
             <div class="advanced-search">
-                <button class="advanced-search-btn" onclick="toggleDropdown()">
+                <button class="advanced-search-btn" type="button" onclick="toggleDropdown()">
                     <i class="fas fa-sliders-h"></i>
                 </button>
                 <div class="dropdown-content" id="advancedDropdown">
                     <h4 style="margin-bottom: 15px; color: #333;">Búsqueda avanzada</h4>
                     <div class="filter-group">
                         <label><strong>Categoría:</strong></label>
-                        <select name="category">
+                        <select id="adv_category">
                             <option value="">Todas</option>
                             <option value="funny">Funny</option>
                             <option value="happy">Happy</option>
@@ -267,51 +274,46 @@
                             <option value="care">Care</option>
                         </select>
                     </div>
-                    
                     <div class="filter-group">
                         <label><strong>Ordenar por fecha:</strong></label>
                         <div class="radio-option">
-                            <input type="radio" name="date_order" value="newest" id="newest" checked>
-                            <label for="newest">Más nuevos primero</label>
+                            <input type="radio" name="adv_date_order" value="newest" id="adv_newest" checked>
+                            <label for="adv_newest">Más nuevos primero</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" name="date_order" value="oldest" id="oldest">
-                            <label for="oldest">Más antiguos primero</label>
+                            <input type="radio" name="adv_date_order" value="oldest" id="adv_oldest">
+                            <label for="adv_oldest">Más antiguos primero</label>
                         </div>
                     </div>
-                    
                     <div class="filter-group">
                         <label><strong>Publicados por:</strong></label>
                         <div class="radio-option">
-                            <input type="radio" name="author" value="all" id="all" checked>
-                            <label for="all">Todos los usuarios</label>
+                            <input type="radio" name="adv_author" value="all" id="adv_all" checked>
+                            <label for="adv_all">Todos los usuarios</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" name="author" value="me" id="me">
-                            <label for="me">Solo mis publicaciones</label>
+                            <input type="radio" name="adv_author" value="me" id="adv_me">
+                            <label for="adv_me">Solo mis publicaciones</label>
                         </div>
                     </div>
-                    
-                    <!-- Añadiendo más opciones para demostrar el scroll -->
                     <div class="filter-group">
                         <label><strong>Tipo de contenido:</strong></label>
                         <div class="radio-option">
-                            <input type="radio" name="content_type" value="all" id="all_content" checked>
-                            <label for="all_content">Todos los tipos</label>
+                            <input type="radio" name="adv_content_type" value="all" id="adv_all_content" checked>
+                            <label for="adv_all_content">Todos los tipos</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" name="content_type" value="images" id="images">
-                            <label for="images">Solo imágenes</label>
+                            <input type="radio" name="adv_content_type" value="images" id="adv_images">
+                            <label for="adv_images">Solo imágenes</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" name="content_type" value="videos" id="videos">
-                            <label for="videos">Solo videos</label>
+                            <input type="radio" name="adv_content_type" value="videos" id="adv_videos">
+                            <label for="adv_videos">Solo videos</label>
                         </div>
                     </div>
-                    
                     <div class="filter-group">
                         <label><strong>Rango de fechas:</strong></label>
-                        <select name="date_range">
+                        <select id="adv_date_range">
                             <option value="">Cualquier fecha</option>
                             <option value="today">Hoy</option>
                             <option value="week">Esta semana</option>
@@ -319,49 +321,35 @@
                             <option value="year">Este año</option>
                         </select>
                     </div>
-                    
-                    <button type="button" class="apply-btn">Aplicar filtros</button>
+                    <button type="button" class="apply-btn" onclick="applyAdvancedFilters()">Aplicar filtros</button>
                 </div>
             </div>
         </div>
     </header>
-
-       <script>
+    <script>
         function toggleDropdown() {
             document.getElementById("advancedDropdown").classList.toggle("show");
         }
-        
-        // Cerrar el dropdown solo si se hace clic fuera de él o de su botón
+
+        // Close dropdown if click outside
         window.onclick = function(event) {
             const dropdown = document.getElementById("advancedDropdown");
             const button = document.querySelector('.advanced-search-btn');
-            
             if (!dropdown.contains(event.target) && !button.contains(event.target)) {
                 dropdown.classList.remove("show");
             }
         }
-        
-        // Función para aplicar los filtros y redirigir
-        function aplicarFiltros() {
-            // Obtener los valores seleccionados
-            const categoria = document.querySelector('select[name="category"]').value;
-            const ordenFecha = document.querySelector('input[name="date_order"]:checked').value;
-            const autor = document.querySelector('input[name="author"]:checked').value;
-            
-            // Construir la URL con los parámetros
-            const urlParams = new URLSearchParams();
-            if (categoria) urlParams.append('category', categoria);
-            urlParams.append('date_order', ordenFecha);
-            urlParams.append('author', autor);
-            
-            // Redirigir a la página de búsqueda avanzada con target _top
-            window.top.location.href = `${pageContext.request.contextPath}/jsp/busquedaAv.jsp?${urlParams.toString()}`;
-        }
 
-        // Asignar la función al botón
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.apply-btn').addEventListener('click', aplicarFiltros);
-        });
+        // This function sets the hidden fields of the main form and submits it
+        function applyAdvancedFilters() {
+            const form = document.getElementById('mainSearchForm');
+            form.querySelector('input[name="category"]').value = document.getElementById('adv_category').value;
+            form.querySelector('input[name="date_order"]').value = document.querySelector('input[name="adv_date_order"]:checked').value;
+            form.querySelector('input[name="author"]').value = document.querySelector('input[name="adv_author"]:checked').value;
+            form.querySelector('input[name="content_type"]').value = document.querySelector('input[name="adv_content_type"]:checked').value;
+            form.querySelector('input[name="date_range"]').value = document.getElementById('adv_date_range').value;
+            form.submit();
+        }
     </script>
 </body>
 </html>
