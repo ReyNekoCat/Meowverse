@@ -236,6 +236,17 @@ iframe {
     text-transform: capitalize;
 }
 
+.post-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #29116f;
+    margin-left: 0.3em;
+    margin-right: 0.5em;
+    /* Optional: add this line to make it align better with category/date */
+    vertical-align: middle;
+    display: inline-block;
+}
+
 .post-date {
     opacity: 0.6;
 }

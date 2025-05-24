@@ -249,7 +249,6 @@
             <form class="search-form" id="mainSearchForm" action="${pageContext.request.contextPath}/SvBusquedaAv" method="GET" target="_top">
                 <input type="text" placeholder="Buscar..." name="search">
                 <button type="submit"><i class="fa fa-search"></i></button>
-
                 <!-- Hidden advanced fields that will be filled by JS if advanced search is used -->
                 <input type="hidden" name="category">
                 <input type="hidden" name="date_order">
@@ -270,8 +269,6 @@
                             <option value="funny">Funny</option>
                             <option value="happy">Happy</option>
                             <option value="sad">Sad</option>
-                            <option value="food">Food</option>
-                            <option value="care">Care</option>
                         </select>
                     </div>
                     <div class="filter-group">

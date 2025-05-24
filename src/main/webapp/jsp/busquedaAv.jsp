@@ -38,6 +38,7 @@
                 <span class="post-category"><%= post.getCategory() != null ? post.getCategory() : "" %></span>
                 <span class="post-date"><%= post.getCreationDate() != null ? post.getCreationDate() : "" %></span>
             </div>
+            <span class="post-title"><b><%= post.getTitle() %></b></span>
             <p class="post-content"><%= post.getDescription() %></p>
             <button class="favorite-btn" data-postid="<%= post.getId() %>">
                 <svg class="favorite-icon <%= liked ? "liked" : "" %>" viewBox="0 0 24 24" width="30" height="30">

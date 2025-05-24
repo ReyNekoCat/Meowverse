@@ -33,9 +33,22 @@
                 </select>
             </div>
         </div>
-        <input type="text" name="title" placeholder="Título del post" required>
+                
+        <input type="text" name="title" placeholder="Título del post" class="post-title-input" required>
         <textarea name="description" placeholder="¿Qué estás pensando?" class="post-text"></textarea>
-        <input type="file" name="image" accept="image/*">
+        <div class="photo-upload-group">
+            <!-- Hidden real file input -->
+            <input type="file" name="image" id="fileInput" accept="image/*" style="display:none;">
+            <!-- Styled button triggers file input -->
+            <button type="button" class="photo-btn" onclick="document.getElementById('fileInput').click();">
+                <span>Foto</span>
+            </button>
+            <!-- Optional: show filename -->
+            <span id="fileName" class="file-name"></span>
+        </div>
+        <!-- Image preview area under the input -->
+        <div id="imagePreview" class="image-preview"></div>
+
         <button class="post-btn">Publicar</button>
         </form>
         
@@ -46,8 +59,8 @@
             <video id="preview-video" controls style="display: none;"></video>
         </div>
 
-        <div class="post-options">
-            <button class="option-btn">? Foto/Video</button>
+        <!--div class="post-options">
+            <button class="option-btn">Foto</button>
             <button class="option-btn">? Emoji</button>
             <div class="emoji-picker" id="emojiPicker">
                 <div class="emoji-grid">
@@ -72,7 +85,33 @@
                 </div>
             </div>
         </div>  
-    </div>
+    </div-->
     <!--script src="${pageContext.request.contextPath}/js/make-editP.js"></script-->
+    <script>
+    const fileInput = document.getElementById('fileInput');
+    const fileName = document.getElementById('fileName');
+    const imagePreview = document.getElementById('imagePreview');
+
+    fileInput.addEventListener('change', function(e) {
+        const file = this.files[0];
+        if (file) {
+            fileName.textContent = file.name;
+
+            // Only preview image if it's an image
+            if(file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    imagePreview.innerHTML = '<img src="' + evt.target.result + '" alt="Vista previa de la imagen">';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.innerHTML = '';
+            }
+        } else {
+            fileName.textContent = '';
+            imagePreview.innerHTML = '';
+        }
+    });
+    </script>
 </body>
 </html>

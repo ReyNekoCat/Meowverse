@@ -44,6 +44,7 @@
                     <img src="<%= request.getContextPath() + "/" + post.getImage() %>" alt="Imagen post">
                 <% } %>
                 <div>
+                    <span class="post-title"><b><%= post.getTitle() %></b></span>
                     <span class="post-category"><%= post.getCategory() != null ? post.getCategory() : "" %></span>
                     <span class="post-date"><%= post.getCreationDate() != null ? post.getCreationDate() : "" %></span>
                 </div>

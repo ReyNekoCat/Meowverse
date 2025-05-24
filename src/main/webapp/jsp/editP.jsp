@@ -33,7 +33,7 @@
                     </select>
                 </div>
             </div>
-            <input type="text" name="title" placeholder="Título del post" value="<%= post.getTitle() %>" required>
+            <input type="text" name="title" placeholder="Título del post" value="<%= post.getTitle() %>" class="post-title-input" required>
             <textarea name="description" placeholder="¿Qué estás pensando?" class="post-text" required><%= post.getDescription() %></textarea>
 
             <label for="image-upload">Imagen actual:</label>
@@ -52,8 +52,8 @@
             <video id="preview-video" controls style="display: none;"></video>
         </div>
 
-        <div class="post-options">
-            <button class="option-btn" type="button" onclick="document.getElementById('image-upload').click();">? Foto/Video</button>
+        <!--div class="post-options">
+            <button class="option-btn" type="button" onclick="document.getElementById('image-upload').click();">Foto</button>
             <button class="option-btn" type="button">? Emoji</button>
             <div class="emoji-picker" id="emojiPicker" style="display: none;">
                 <div class="emoji-grid">
@@ -76,7 +76,7 @@
                     <div class="emoji-option" title="Gato astronauta">???</div>
                     <div class="emoji-option" title="Gato ninja">???</div>
                 </div>
-            </div>
+            </div-->
         </div>  
     </div>
     <script>

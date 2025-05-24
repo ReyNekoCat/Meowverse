@@ -144,9 +144,14 @@ body {
 }
 
 .post-title {
-    margin-top: 0.2em;
-    font-size: 1.4rem;
-    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #29116f;
+    margin-left: 0.3em;
+    margin-right: 0.5em;
+    /* Optional: add this line to make it align better with category/date */
+    vertical-align: middle;
+    display: inline-block;
 }
 
 .post-content {
